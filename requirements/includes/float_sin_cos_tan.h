@@ -1,62 +1,9 @@
-static const float one = 1.0000000000e+00,
-C1 = 4.1666667908e-02,
-C2 = -1.3888889225e-03,
-C3 = 2.4801587642e-05,
-C4 = -2.7557314297e-07,
-C5 = 2.0875723372e-09,
-C6 = -1.1359647598e-11;
+#include "../float/float_scalbn/float_scalbn.h"
+#include "../float/float_fabs/float_fabs.h"
 
+extern float scalbn_float(float x, int n);
 
-static const int init_jk[] = {4,7,9};
-static const float PIo2[] = {
-  1.5703125000e+00,
-  4.5776367188e-04,
-  2.5987625122e-05,
-  7.5437128544e-08,
-  6.0026650317e-11,
-  7.3896444519e-13,
-  5.3845816694e-15,
-  5.6378512969e-18,
-  8.3009228831e-20,
-  3.2756352257e-22,
-  6.3331015649e-25,
-};
-
-
-static const float zero = 0.0,
-one = 1.0,
-two8 = 2.5600000000e+02,
-twon8 = 3.9062500000e-03;
-
-static const float pio4 = 7.8539812565e-01,
-pio4lo= 3.7748947079e-08,
-T[] = {
-  3.3333334327e-01,
-  1.3333334029e-01,
-  5.3968254477e-02,
-  2.1869488060e-02,
-  8.8632395491e-03,
-  3.5920790397e-03,
-  1.4562094584e-03,
-  5.8804126456e-04,
-  2.4646313977e-04,
-  7.8179444245e-05,
-  7.1407252108e-05,
- -1.8558637748e-05,
-  2.5907305826e-05,
-};
-
-
-static const float half = 5.0000000000e-01,
-S1 = -1.6666667163e-01,
-S2 = 8.3333337680e-03,
-S3 = -1.9841270114e-04,
-S4 = 2.7557314297e-06,
-S5 = -2.5050759689e-08,
-S6 = 1.5896910177e-10;
-
-
-static const __int32_t two_over_pi[] = {
+static const __int32_t two_over_pi_rempio[] = {
 0xA2, 0xF9, 0x83, 0x6E, 0x4E, 0x44, 0x15, 0x29, 0xFC,
 0x27, 0x57, 0xD1, 0xF5, 0x34, 0xDD, 0xC0, 0xDB, 0x62,
 0x95, 0x99, 0x3C, 0x43, 0x90, 0x41, 0xFE, 0x51, 0x63,
@@ -81,7 +28,7 @@ static const __int32_t two_over_pi[] = {
 0x73, 0xA8, 0xC9, 0x60, 0xE2, 0x7B, 0xC0, 0x8C, 0x6B,
 };
 
-static const __int32_t npio2_hw[] = {
+static const __int32_t npio2_hw_rempio[] = {
 0x3fc90f00, 0x40490f00, 0x4096cb00, 0x40c90f00, 0x40fb5300, 0x4116cb00,
 0x412fed00, 0x41490f00, 0x41623100, 0x417b5300, 0x418a3a00, 0x4196cb00,
 0x41a35c00, 0x41afed00, 0x41bc7e00, 0x41c90f00, 0x41d5a000, 0x41e23100,
@@ -90,107 +37,19 @@ static const __int32_t npio2_hw[] = {
 0x4242c700, 0x42490f00
 };
 
-static const float zero = 0.0000000000e+00,
-invpio2 = 6.3661980629e-01,
-pio2_1 = 1.5707855225e+00,
-pio2_1t = 1.0804334124e-05,
-pio2_2 = 1.0804273188e-05,
-pio2_2t = 6.0770999344e-11,
-pio2_3 = 6.0770943833e-11,
-pio2_3t = 6.1232342629e-17;
+static const float zero_rempio = 0.0000000000e+00,
+half_rempio = 5.0000000000e-01,
+two8_rempio = 2.5600000000e+02,
+invpio2_rempio = 6.3661980629e-01,
+pio2_1_rempio = 1.5707855225e+00,
+pio2_1t_rempio = 1.0804334124e-05,
+pio2_2_rempio = 1.0804273188e-05,
+pio2_2t_rempio = 6.0770999344e-11,
+pio2_3_rempio = 6.0770943833e-11,
+pio2_3t_rempio = 6.1232342629e-17;
 
 
-float __kernel_cosf(float x, float y) {
- float a,hz,z,r,qx;
- __int32_t ix;
- do { ieee_float_shape_type gf_u; gf_u.value = (x); (ix) = gf_u.word; } while (0);
- ix &= 0x7fffffff;
- if(ix<0x32000000) {
-     if(((int)x)==0) return one;
- }
- z = x*x;
- r = z*(C1+z*(C2+z*(C3+z*(C4+z*(C5+z*C6)))));
- if(ix < 0x3e99999a)
-     return one - ((float)0.5*z - (z*r - x*y));
- else {
-     if(ix > 0x3f480000) {
-  qx = (float)0.28125;
-     } else {
-         do { ieee_float_shape_type sf_u; sf_u.word = (ix-0x01000000); (qx) = sf_u.value; } while (0);
-     }
-     hz = (float)0.5*z-qx;
-     a = one-qx;
-     return a - (hz - (z*r-x*y));
- }
-}
-
-
-
-float __kernel_tanf(float x, float y, int iy) {
- float z,r,v,w,s;
- __int32_t ix,hx;
- do { ieee_float_shape_type gf_u; gf_u.value = (x); (hx) = gf_u.word; } while (0);
- ix = hx&0x7fffffff;
- if(ix<0x31800000)
-     {if((int)x==0) {
-  if((ix|(iy+1))==0) return one/fabsf(x);
-  else return (iy==1)? x: -one/x;
-     }
-     }
- if(ix>=0x3f2ca140) {
-     if(hx<0) {x = -x; y = -y;}
-     z = pio4-x;
-     w = pio4lo-y;
-     x = z+w; y = 0.0;
- }
- z = x*x;
- w = z*z;
- r = T[1]+w*(T[3]+w*(T[5]+w*(T[7]+w*(T[9]+w*T[11]))));
- v = z*(T[2]+w*(T[4]+w*(T[6]+w*(T[8]+w*(T[10]+w*T[12])))));
- s = z*x;
- r = y + z*(s*(r+v)+y);
- r += T[0]*s;
- w = x+r;
- if(ix>=0x3f2ca140) {
-     v = (float)iy;
-     return (float)(1-((hx>>30)&2))*(v-(float)2.0*(x-(w*w/(w+v)-r)));
- }
- if(iy==1) return w;
- else {
-
-
-     float a,t;
-     __int32_t i;
-     z = w;
-     do { ieee_float_shape_type gf_u; gf_u.value = (z); (i) = gf_u.word; } while (0);
-     do { ieee_float_shape_type sf_u; sf_u.word = (i&0xfffff000); (z) = sf_u.value; } while (0);
-     v = r-(z - x);
-     t = a = -(float)1.0/w;
-     do { ieee_float_shape_type gf_u; gf_u.value = (t); (i) = gf_u.word; } while (0);
-     do { ieee_float_shape_type sf_u; sf_u.word = (i&0xfffff000); (t) = sf_u.value; } while (0);
-     s = (float)1.0+t*z;
-     return t+a*(s+t*v);
- }
-}
-
-
-
-float __kernel_sinf(float x, float y, int iy) {
- float z,r,v;
- __int32_t ix;
- do { ieee_float_shape_type gf_u; gf_u.value = (x); (ix) = gf_u.word; } while (0);
- ix &= 0x7fffffff;
- if(ix<0x32000000)
-    {if((int)x==0) return x;}
- z = x*x;
- v = z*x;
- r = S2+z*(S3+z*(S4+z*(S5+z*S6)));
- if(iy==0) return x+v*(S1+z*r);
- else return x-((z*(half*y-v*r)-y)-v*S1);
-}
-
-
- __int32_t __ieee754_rem_pio2f(float x, float *y){
+ __int32_t __ieee754_rem_pio2f(float x, float *y) {
  float z,w,t,r,fn;
  float tx[3];
  __int32_t i,j,n,ix,hx;
@@ -202,36 +61,36 @@ float __kernel_sinf(float x, float y, int iy) {
      {y[0] = x; y[1] = 0; return 0;}
  if(ix<0x4016cbe4) {
      if(hx>0) {
-  z = x - pio2_1;
+  z = x - pio2_1_rempio;
   if((ix&0xfffffff0)!=0x3fc90fd0) {
-      y[0] = z - pio2_1t;
-      y[1] = (z-y[0])-pio2_1t;
+      y[0] = z - pio2_1t_rempio;
+      y[1] = (z-y[0])-pio2_1t_rempio;
   } else {
-      z -= pio2_2;
-      y[0] = z - pio2_2t;
-      y[1] = (z-y[0])-pio2_2t;
+      z -= pio2_2_rempio;
+      y[0] = z - pio2_2t_rempio;
+      y[1] = (z-y[0])-pio2_2t_rempio;
   }
   return 1;
      } else {
-  z = x + pio2_1;
+  z = x + pio2_1_rempio;
   if((ix&0xfffffff0)!=0x3fc90fd0) {
-      y[0] = z + pio2_1t;
-      y[1] = (z-y[0])+pio2_1t;
+      y[0] = z + pio2_1t_rempio;
+      y[1] = (z-y[0])+pio2_1t_rempio;
   } else {
-      z += pio2_2;
-      y[0] = z + pio2_2t;
-      y[1] = (z-y[0])+pio2_2t;
+      z += pio2_2_rempio;
+      y[0] = z + pio2_2t_rempio;
+      y[1] = (z-y[0])+pio2_2t_rempio;
   }
   return -1;
      }
  }
  if(ix<=0x43490f80) {
-     t = fabsf(x);
-     n = (__int32_t) (t*invpio2+half);
+     t = fabs_float(x);
+     n = (__int32_t) (t*invpio2_rempio+half_rempio);
      fn = (float)n;
-     r = t-fn*pio2_1;
-     w = fn*pio2_1t;
-     if(n<32&&(ix&0xffffff00)!=npio2_hw[n-1]) {
+     r = t-fn*pio2_1_rempio;
+     w = fn*pio2_1t_rempio;
+     if(n<32&&(ix&0xffffff00)!=npio2_hw_rempio[n-1]) {
   y[0] = r-w;
      } else {
          __uint32_t high;
@@ -241,17 +100,17 @@ float __kernel_sinf(float x, float y, int iy) {
          i = j-((high>>23)&0xff);
          if(i>8) {
       t = r;
-      w = fn*pio2_2;
+      w = fn*pio2_2_rempio;
       r = t-w;
-      w = fn*pio2_2t-((t-r)-w);
+      w = fn*pio2_2t_rempio-((t-r)-w);
       y[0] = r-w;
       do { ieee_float_shape_type gf_u; gf_u.value = (y[0]); (high) = gf_u.word; } while (0);
       i = j-((high>>23)&0xff);
       if(i>25) {
        t = r;
-       w = fn*pio2_3;
+       w = fn*pio2_3_rempio;
        r = t-w;
-       w = fn*pio2_3t-((t-r)-w);
+       w = fn*pio2_3t_rempio-((t-r)-w);
        y[0] = r-w;
       }
   }
@@ -271,23 +130,49 @@ float __kernel_sinf(float x, float y, int iy) {
  do { ieee_float_shape_type sf_u; sf_u.word = (ix - ((__int32_t)e0<<23)); (z) = sf_u.value; } while (0);
  for(i=0;i<2;i++) {
   tx[i] = (float)((__int32_t)(z));
-  z = (z-tx[i])*two8;
+  z = (z-tx[i])*two8_rempio;
  }
  tx[2] = z;
  nx = 3;
- while(tx[nx-1]==zero) nx--;
- n = __kernel_rem_pio2f(tx,y,e0,nx,2,two_over_pi);
+ while(tx[nx-1]==zero_rempio) nx--;
+ n = __kernel_rem_pio2f(tx,y,e0,nx,2,two_over_pi_rempio);
  if(hx<0) {y[0] = -y[0]; y[1] = -y[1]; return -n;}
  return n;
 }
 
+/*
+* __kernel_rem_pio2
+*/
 
- int __kernel_rem_pio2f(float *x, float *y, int e0, int nx, int prec, const __int32_t *ipio2){
+static const int init_jk_krempio[] = {4,7,9};
+
+static const float PIo2_krempio[] = {
+  1.5703125000e+00,
+  4.5776367188e-04,
+  2.5987625122e-05,
+  7.5437128544e-08,
+  6.0026650317e-11,
+  7.3896444519e-13,
+  5.3845816694e-15,
+  5.6378512969e-18,
+  8.3009228831e-20,
+  3.2756352257e-22,
+  6.3331015649e-25,
+};
+
+
+static const float zero_krempio = 0.0,
+one_krempio = 1.0,
+two8_krempio = 2.5600000000e+02,
+twon8_krempio = 3.9062500000e-03;
+
+
+int __kernel_rem_pio2f(float *x, float *y, int e0, int nx, int prec, const __int32_t *ipio2) {
  __int32_t jz,jx,jv,jp,jk,carry,n,iq[20],i,j,k,m,q0,ih;
  float z,fw,f[20],fq[20],q[20];
 
 
- jk = init_jk[prec];
+ jk = init_jk_krempio[prec];
  jp = jk;
 
 
@@ -297,7 +182,7 @@ float __kernel_sinf(float x, float y, int iy) {
 
 
  j = jv-jx; m = jx+jk;
- for(i=0;i<=m;i++,j++) f[i] = (j<0)? zero : (float) ipio2[j];
+ for(i=0;i<=m;i++,j++) f[i] = (j<0)? zero_krempio : (float) ipio2[j];
 
 
  for (i=0;i<=jk;i++) {
@@ -308,8 +193,8 @@ float __kernel_sinf(float x, float y, int iy) {
 recompute:
 
  for(i=0,j=jz,z=q[jz];j>0;i++,j--) {
-     fw = (float)((__int32_t)(twon8* z));
-     iq[i] = (__int32_t)(z-two8*fw);
+     fw = (float)((__int32_t)(twon8_krempio* z));
+     iq[i] = (__int32_t)(z-two8_krempio*fw);
      z = q[j-1]+fw;
  }
 
@@ -346,13 +231,13 @@ recompute:
          }
      }
      if(ih==2) {
-  z = one - z;
-  if(carry!=0) z -= scalbn_float(one,(int)q0);
+  z = one_krempio - z;
+  if(carry!=0) z -= scalbn_float(one_krempio,(int)q0);
      }
  }
 
 
- if(z==zero) {
+ if(z==zero_krempio) {
      j = 0;
      for (i=jz-1;i>=jk;i--) j |= iq[i];
      if(j==0) {
@@ -374,23 +259,22 @@ recompute:
      while(iq[jz]==0) { jz--; q0-=8;}
  } else {
      z = scalbn_float(z,-(int)q0);
-     if(z>=two8) {
-  fw = (float)((__int32_t)(twon8*z));
-  iq[jz] = (__int32_t)(z-two8*fw);
+     if(z>=two8_krempio) {
+  fw = (float)((__int32_t)(twon8_krempio*z));
+  iq[jz] = (__int32_t)(z-two8_krempio*fw);
   jz += 1; q0 += 8;
   iq[jz] = (__int32_t) fw;
      } else iq[jz] = (__int32_t) z ;
  }
 
 
- fw = scalbn_float(one,(int)q0);
+ fw = scalbn_float(one_krempio,(int)q0);
  for(i=jz;i>=0;i--) {
-     q[i] = fw*(float)iq[i]; fw*=twon8;
+     q[i] = fw*(float)iq[i]; fw*=twon8_krempio;
  }
 
-
  for(i=jz;i>=0;i--) {
-     for(fw=0.0,k=0;k<=jp&&k<=jz-i;k++) fw += PIo2[k]*q[i+k];
+     for(fw=0.0,k=0;k<=jp&&k<=jz-i;k++) fw += PIo2_krempio[k]*q[i+k];
      fq[jz-i] = fw;
  }
 
@@ -428,4 +312,130 @@ recompute:
   }
  }
  return n&7;
+}
+
+
+static const float half_ksin = 5.0000000000e-01,
+S1_ksin = -1.6666667163e-01,
+S2_ksin = 8.3333337680e-03,
+S3_ksin = -1.9841270114e-04,
+S4_ksin = 2.7557314297e-06,
+S5_ksin = -2.5050759689e-08,
+S6_ksin = 1.5896910177e-10;
+
+
+float __kernel_sinf(float x, float y, int iy) {
+ float z,r,v;
+ __int32_t ix;
+ do { ieee_float_shape_type gf_u; gf_u.value = (x); (ix) = gf_u.word; } while (0);
+ ix &= 0x7fffffff;
+ if(ix<0x32000000)
+    {if((int)x==0) return x;}
+ z = x*x;
+ v = z*x;
+ r = S2_ksin+z*(S3_ksin+z*(S4_ksin+z*(S5_ksin+z*S6_ksin)));
+ if(iy==0) return x+v*(S1_ksin+z*r);
+ else return x-((z*(half_ksin*y-v*r)-y)-v*S1_ksin);
+}
+
+
+static const float one_kcos = 1.0000000000e+00,
+C1_kcos = 4.1666667908e-02,
+C2_kcos = -1.3888889225e-03,
+C3_kcos = 2.4801587642e-05,
+C4_kcos = -2.7557314297e-07,
+C5_kcos = 2.0875723372e-09,
+C6_kcos = -1.1359647598e-11;
+
+
+float __kernel_cosf(float x, float y) {
+ float a,hz,z,r,qx;
+ __int32_t ix;
+ do { ieee_float_shape_type gf_u; gf_u.value = (x); (ix) = gf_u.word; } while (0);
+ ix &= 0x7fffffff;
+ if(ix<0x32000000) {
+     if(((int)x)==0) return one_kcos;
+ }
+ z = x*x;
+ r = z*(C1_kcos+z*(C2_kcos+z*(C3_kcos+z*(C4_kcos+z*(C5_kcos+z*C6_kcos)))));
+ if(ix < 0x3e99999a)
+     return one_kcos - ((float)0.5*z - (z*r - x*y));
+ else {
+     if(ix > 0x3f480000) {
+  qx = (float)0.28125;
+     } else {
+         do { ieee_float_shape_type sf_u; sf_u.word = (ix-0x01000000); (qx) = sf_u.value; } while (0);
+     }
+     hz = (float)0.5*z-qx;
+     a = one_kcos-qx;
+     return a - (hz - (z*r-x*y));
+ }
+}
+
+
+static const float one_ktan = 1.0000000000e+00,
+pio4_ktan = 7.8539812565e-01,
+pio4lo_ktan= 3.7748947079e-08,
+T_ktan[] = {
+  3.3333334327e-01,
+  1.3333334029e-01,
+  5.3968254477e-02,
+  2.1869488060e-02,
+  8.8632395491e-03,
+  3.5920790397e-03,
+  1.4562094584e-03,
+  5.8804126456e-04,
+  2.4646313977e-04,
+  7.8179444245e-05,
+  7.1407252108e-05,
+ -1.8558637748e-05,
+  2.5907305826e-05,
+};
+
+
+float __kernel_tanf(float x, float y, int iy) {
+ float z,r,v,w,s;
+ __int32_t ix,hx;
+ do { ieee_float_shape_type gf_u; gf_u.value = (x); (hx) = gf_u.word; } while (0);
+ ix = hx&0x7fffffff;
+ if(ix<0x31800000)
+     {if((int)x==0) {
+  if((ix|(iy+1))==0) return one_ktan/fabs_float(x);
+  else return (iy==1)? x: -one_ktan/x;
+     }
+     }
+ if(ix>=0x3f2ca140) {
+     if(hx<0) {x = -x; y = -y;}
+     z = pio4_ktan-x;
+     w = pio4lo_ktan-y;
+     x = z+w; y = 0.0;
+ }
+ z = x*x;
+ w = z*z;
+ r = T_ktan[1]+w*(T_ktan[3]+w*(T_ktan[5]+w*(T_ktan[7]+w*(T_ktan[9]+w*T_ktan[11]))));
+ v = z*(T_ktan[2]+w*(T_ktan[4]+w*(T_ktan[6]+w*(T_ktan[8]+w*(T_ktan[10]+w*T_ktan[12])))));
+ s = z*x;
+ r = y + z*(s*(r+v)+y);
+ r += T_ktan[0]*s;
+ w = x+r;
+ if(ix>=0x3f2ca140) {
+     v = (float)iy;
+     return (float)(1-((hx>>30)&2))*(v-(float)2.0*(x-(w*w/(w+v)-r)));
+ }
+ if(iy==1) return w;
+ else {
+
+
+     float a,t;
+     __int32_t i;
+     z = w;
+     do { ieee_float_shape_type gf_u; gf_u.value = (z); (i) = gf_u.word; } while (0);
+     do { ieee_float_shape_type sf_u; sf_u.word = (i&0xfffff000); (z) = sf_u.value; } while (0);
+     v = r-(z - x);
+     t = a = -(float)1.0/w;
+     do { ieee_float_shape_type gf_u; gf_u.value = (t); (i) = gf_u.word; } while (0);
+     do { ieee_float_shape_type sf_u; sf_u.word = (i&0xfffff000); (t) = sf_u.value; } while (0);
+     s = (float)1.0+t*z;
+     return t+a*(s+t*v);
+ }
 }

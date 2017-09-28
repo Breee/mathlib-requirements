@@ -1,7 +1,4 @@
-#include "../../libs/newlib/libm/common/fdlibm.h"
 #include <stdio.h>
-#include <math.h>
-
 
 /*
 * Defines for the different tools.
