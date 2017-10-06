@@ -1,4 +1,0 @@
-scan-build: Using '/usr/lib/llvm-4.0/bin/clang' for static analysis
-scan-build: Emitting reports for this run to '/tmp/scan-build-2017-09-28-171530-50990-1'.
-scan-build: 2 bugs found.
-scan-build: Run 'scan-view /tmp/scan-build-2017-09-28-171530-50990-1' to examine bug reports.

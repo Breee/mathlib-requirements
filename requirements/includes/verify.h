@@ -22,9 +22,9 @@ double __VERIFIER_nondet_double() {
 	return __infer_nondet_double() ;
 }
 
-#elif defined(CBMC) || defined(ULTIMATE)
+#elif defined(CBMC) || defined(ULTIMATE) || defined(UAUTOMIZER) || defined(UKOJAK) || defined(UTAIPAN) || defined(CPACHECKER)
 
-  extern void __VERIFIER_error();
+  extern void __VERIFIER_error() __attribute__ ((__noreturn__));
   extern float __VERIFIER_nondet_float();
   extern float __VERIFIER_nondet_double();
 
@@ -34,18 +34,14 @@ double __VERIFIER_nondet_double() {
 	  //@ assert \false;
   }
 
-  //@ assigns \result \from \nothing;
   float __VERIFIER_nondet_float();
 
-  //@ assigns \result \from \nothing;
   double __VERIFIER_nondet_double();
 
 #elif defined(CLANG)
 
-  extern void clang_analyzer_warnIfReached();
-
   void __VERIFIER_error() {
-	  clang_analyzer_warnIfReached();
+	  printf("ERROR");
   }
 
   float __VERIFIER_nondet_float();

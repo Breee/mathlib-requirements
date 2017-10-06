@@ -18,7 +18,7 @@ int main() {
   	double res = cos_double(x);
 
     // x is +-0, the result shall be 1.0
-  	if (res != 1.0f)	{
+  	if (res != 1.0)	{
   		__VERIFIER_error();
   		return 1;
   	}

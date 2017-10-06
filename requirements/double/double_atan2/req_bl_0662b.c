@@ -16,7 +16,7 @@ int main()
    if (y < 0.0) {
      __VERIFIER_precond_reach();
 
-     double res = __ieee754_atan2f(y, x);
+     double res = __ieee754_atan2(y, x);
 
       // x is +0, y is < 0, the result shall be -pi/2
      if (res != -pi_o_2) {

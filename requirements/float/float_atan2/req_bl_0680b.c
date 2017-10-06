@@ -15,8 +15,8 @@ int main(){
 
      float res = __ieee754_atan2f(y, x);
 
-     // x is -0, y is +0, the result shall be +pi
-     if (res != pi) {
+     // x is -0, y is -0, the result shall be -pi
+     if (res != -pi) {
        __VERIFIER_error();
        return 1;
      }

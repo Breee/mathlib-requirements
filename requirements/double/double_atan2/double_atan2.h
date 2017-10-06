@@ -21,7 +21,7 @@ double __ieee754_atan2(double y, double x) {
   if(((ix|((lx|-lx)>>31))>0x7ff00000)||
      ((iy|((ly|-ly)>>31))>0x7ff00000))
      return x+y;
-  if(((hx-0x3ff00000)|lx)==0) return atan(y);
+  if(((hx-0x3ff00000)|lx)==0) return atan_double(y);
   m = ((hy>>31)&1)|((hx>>30)&2);
 
 
@@ -61,7 +61,7 @@ double __ieee754_atan2(double y, double x) {
   k = (iy-ix)>>20;
   if(k > 60) z=pi_o_2+0.5*pi_lo_atan2;
   else if(hx<0&&k<-60) z=0.0;
-  else z=atan(fabs(y/x));
+  else z=atan_double(fabs_double(y/x));
   switch (m) {
       case 0: return z ;
       case 1: {

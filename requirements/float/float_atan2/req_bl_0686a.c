@@ -16,7 +16,7 @@ int main()
 
      float res = __ieee754_atan2f(y, x);
 
-     // x is -inf, y is +inf, the result shall be +pi/4
+     // x is +inf, y is +inf, the result shall be +pi/4
      if (res != pi_o_4) {
        __VERIFIER_error();
        return 1;

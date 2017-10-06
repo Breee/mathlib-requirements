@@ -10,7 +10,6 @@ int main() {
 
   double x = -0.0;
 
-  // if x is not +-0 we stop
   if (x == -0.0) {
 
     	__VERIFIER_precond_reach();

@@ -17,7 +17,7 @@ int isinf_float(float x) {
 
 // nan check for floats
 int isnan_float(float x) {
- #if defined(ULTIMATE)
+ #if defined(ULTIMATE) || defined(UAUTOMIZER) || defined(UKOJAK) || defined(UTAIPAN)
    return x != x;
  #else
    __int32_t ix;
@@ -43,7 +43,7 @@ return (((ix)<0x7f800000L));
  * Returns One of FP_INFINITE, FP_NAN, FP_NORMAL, FP_SUBNORMAL, FP_ZERO or implementation-defined type, specifying the category of arg.
  */
 
-int __fpclassifyf (float x) {
+int __fpclassify_float (float x) {
   __uint32_t w;
 
   do { ieee_float_shape_type gf_u; gf_u.value = (x); (w) = gf_u.word; } while (0);

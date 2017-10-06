@@ -5,7 +5,7 @@ twom25_scalbn = 2.9802322388e-08,
 huge_scalbn = 1.0e+30,
 tiny_scalbn = 1.0e-30;
 
-float scalbnf (float x, int n) {
+float scalbn_float (float x, int n) {
  __int32_t k,ix;
  __uint32_t hx;
 

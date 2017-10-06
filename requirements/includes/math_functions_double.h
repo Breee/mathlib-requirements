@@ -18,7 +18,7 @@ int isinf_double(double x) {
 
 // nan check for doubles
 int isnan_double(double x) {
-  #if defined(ULTIMATE)
+  #if defined(ULTIMATE) || defined(UAUTOMIZER) || defined(UKOJAK) || defined(UTAIPAN)
     return x != x;
   #else
     __int32_t hx,lx;
@@ -42,7 +42,7 @@ return (int)((__uint32_t)((hx&0x7fffffff)-0x7ff00000)>>31);
  * Returns One of FP_INFINITE, FP_NAN, FP_NORMAL, FP_SUBNORMAL, FP_ZERO or implementation-defined type, specifying the category of arg.
  */
 
-int __fpclassifyd (double x) {
+int __fpclassify_double (double x) {
   __uint32_t msw, lsw;
 
   do { ieee_double_shape_type ew_u; ew_u.value = (x); (msw) = ew_u.parts.msw; (lsw) = ew_u.parts.lsw; } while (0);

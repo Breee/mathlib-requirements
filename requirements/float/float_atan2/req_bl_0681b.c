@@ -4,14 +4,13 @@
 
 int main()
 {
-  float x = __VERIFIER_nondet_float();
+  float x = 0.0f;
   float y = 0.0f;
 
   /* REQ-BL-0681:
    * The atan2 and atan2f procedures shall return +-0 , if the argument y is +-0 and the argument x is +0.
    */
 
-   // x is not +0 and y is not +-0,  we don't want to continue
    if (x == 0.0f && y == 0.0f ) {
 
      __VERIFIER_precond_reach();

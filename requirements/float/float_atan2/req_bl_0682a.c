@@ -16,7 +16,7 @@ int main()
    if (isinf_float(x) && isfinite_float(y) && y < 0.0f) {
      __VERIFIER_precond_reach();
 
-     float res = __ieee754_atan2(y, x);
+     float res = __ieee754_atan2f(y, x);
 
     // x is -inf, y < 0.0 and y != inf, the result shall be -pi
      if (isinf_float(x) && y < 0.0f && isfinite_float(y) && res != -pi) {

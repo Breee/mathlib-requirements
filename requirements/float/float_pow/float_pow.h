@@ -1,3 +1,4 @@
+#include "../float_sqrt/float_sqrt.h"
 #include "../float_scalbn/float_scalbn.h"
 #include "../float_fabs/float_fabs.h"
 

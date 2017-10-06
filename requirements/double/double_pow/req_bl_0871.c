@@ -16,7 +16,7 @@ int main() {
 
     __VERIFIER_precond_reach();
 
-    double res = __ieee754_powf(x,y);
+    double res = __ieee754_pow(x,y);
 
     // result shall be 1.0
     if(res != 1.0){

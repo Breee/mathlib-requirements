@@ -11,7 +11,7 @@ int main()
    * The atan2 and atan2f procedures shall return +-pi, if the argument y is +-0 and the argument x is -0.
    */
 
-   if (x == -0.0f && y == +0.0f) {
+   if (x == -0.0f && y == 0.0f) {
      __VERIFIER_precond_reach();
 
      float res = __ieee754_atan2f(y, x);
