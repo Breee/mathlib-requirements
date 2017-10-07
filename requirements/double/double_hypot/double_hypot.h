@@ -1,3 +1,7 @@
+#include "../double_sqrt/double_sqrt.h"
+
+extern double __ieee754_sqrt(double x);
+
 double __ieee754_hypot(double x, double y) {
 double a=x,b=y,t1,t2,y1,y2,w;
 __int32_t j,k,ha,hb;

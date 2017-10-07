@@ -50,13 +50,22 @@ double __VERIFIER_nondet_double() {
 
 #elif defined(COVERITY)
 
+
 void __VERIFIER_error(){
 	int *x;
 	int y;
 	y = *x;
 }
-float __VERIFIER_nondet_float();
-double __VERIFIER_nondet_double();
+
+float __VERIFIER_nondet_float(){
+	float x;
+	return x;
+}
+double __VERIFIER_nondet_double(){
+	double x;
+	return x;
+}
+
 
 #elif defined(CWITNESS)
 
@@ -87,8 +96,14 @@ void __VERIFIER_error(){
 	int y;
 	y = *x;
 }
-float __VERIFIER_nondet_float();
-double __VERIFIER_nondet_double();
+float __VERIFIER_nondet_float(){
+	float x;
+	return x;
+}
+double __VERIFIER_nondet_double(){
+	double x;
+	return x;
+}
 
 #endif
 

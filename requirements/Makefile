@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -c -O0 -I../libs/newlib/libc/include/
+CFLAGS = -O0 -I../libs/newlib/libc/include/
 LD = $(CC)
 
 TARGET = .
