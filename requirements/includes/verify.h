@@ -74,19 +74,9 @@ double __VERIFIER_nondet_double() {
 
 #else
 
-void __VERIFIER_error(){
-	printf("Error");
-}
-
-float __VERIFIER_nondet_float() {
-	float x;
-	return x;
-}
-
-double __VERIFIER_nondet_double() {
-	double x;
-	return x;
-}
+extern void __VERIFIER_error();
+float __VERIFIER_nondet_float();
+double __VERIFIER_nondet_double();
 
 #endif
 
