@@ -1,7 +1,6 @@
-#include "../../includes/verify.h"
 #include "../../includes/math_functions_float.h"
+#include "../../includes/verify.h"
 #include "float_sin.h"
-
 
 int main() {
 
@@ -10,19 +9,14 @@ int main() {
    * The sin and sinf procedures shall return NaN if x is ±Inf
    */
 
-  float x = -INFINITY;
+  float x = -1.0f / 0.0f; // -INF
+  __VERIFIER_precond_reach();
+  float res = sin_float(x);
 
-  if (isinf_float(x)) {
-    __VERIFIER_precond_reach();
-
-  	float res = sin_float(x);
-
-    // x is -INF, the result shall be NAN
-  	if (!isnan_float(res))	{
-  		__VERIFIER_error();
-  		return 1;
-  	}
-	}
-
-	return 0;
+  // x is -INF, the result shall be NAN
+  if (!isnan_float(res)) {
+    __VERIFIER_error();
+    return 1;
+  }
+  return 0;
 }

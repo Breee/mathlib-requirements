@@ -11,20 +11,15 @@ int main() {
    */
 
   double x = -0.0;
+  __VERIFIER_precond_reach();
+  
+  double res = ceil_double(x);
 
-  if (x == -0.0) {
-
-    __VERIFIER_precond_reach();
-
-  	double res = ceil_double(x);
-
-    // x is -+0 or +inf , the result shall be x
-  	if (res != x)	{
-  		__VERIFIER_error();
-  		return 1;
-  	}
-
-	}
+  // x is -0, the result shall be x
+  if (res != x)	{
+  	__VERIFIER_error();
+  	return 1;
+  }
 
 	return 0;
 }

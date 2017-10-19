@@ -2528,25 +2528,36 @@ static __inline__ int __sputc_r(struct _reent *_ptr, int _c, FILE *_p) {
 /*
 * Defines for the different tools.
 */
-void __VERIFIER_error(){
- int *x;
- int y;
- y = *x;
+void __VERIFIER_error() {
+  *(int *)0 = 0; // Nullpointer, segfault.
 }
-
-float __VERIFIER_nondet_float(){
- float x;
- return x;
+float __VERIFIER_nondet_float() {
+  float x;
+  return x;
 }
-double __VERIFIER_nondet_double(){
- double x;
- return x;
+double __VERIFIER_nondet_double() {
+  double x;
+  return x;
 }
 void __VERIFIER_precond_reach() {
 
 
 
 }
+
+/* @(#)fdlibm.h 5.1 93/09/24 */
+/*
+ * ====================================================
+ * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
+ *
+ * Developed at SunPro, a Sun Microsystems, Inc. business.
+ * Permission to use, copy, modify, and distribute this
+ * software is freely granted, provided that this notice
+ * is preserved.
+ * ====================================================
+ */
+
+/* REDHAT LOCAL: Include files.  */
 
 
 
@@ -2910,21 +2921,6 @@ enum __fdlibm_version
 
 extern enum __fdlibm_version __fdlib_version;
 
-
-/* @(#)fdlibm.h 5.1 93/09/24 */
-/*
- * ====================================================
- * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
- *
- * Developed at SunPro, a Sun Microsystems, Inc. business.
- * Permission to use, copy, modify, and distribute this
- * software is freely granted, provided that this notice
- * is preserved.
- * ====================================================
- */
-
-/* REDHAT LOCAL: Include files.  */
-
 /* unified sys/types.h: 
    start with sef's sysvi386 version.
    merge go32 version -- a few ifdefs.
@@ -3204,18 +3200,24 @@ double floor_double(double x) {
  return x;
 }
 
+
 /*
 * preprocessed newlib functions
 */
 
 // infinity check for doubles
 int isinf_double(double x) {
- __int32_t hx,lx;
- do { ieee_double_shape_type ew_u; ew_u.value = (x); (hx) = ew_u.parts.msw; (lx) = ew_u.parts.lsw; } while (0);
- hx &= 0x7fffffff;
- hx |= (__uint32_t)(lx|(-lx))>>31;
- hx = 0x7ff00000 - hx;
- return 1 - (int)((__uint32_t)(hx|(-hx))>>31);
+  __int32_t hx, lx;
+  do {
+    ieee_double_shape_type ew_u;
+    ew_u.value = (x);
+    (hx) = ew_u.parts.msw;
+    (lx) = ew_u.parts.lsw;
+  } while (0);
+  hx &= 0x7fffffff;
+  hx |= (__uint32_t)(lx | (-lx)) >> 31;
+  hx = 0x7ff00000 - hx;
+  return 1 - (int)((__uint32_t)(hx | (-hx)) >> 31);
 }
 
 // nan check for doubles
@@ -3223,31 +3225,48 @@ int isnan_double(double x) {
 
 
 
-    __int32_t hx,lx;
-    do { ieee_double_shape_type ew_u; ew_u.value = (x); (hx) = ew_u.parts.msw; (lx) = ew_u.parts.lsw; } while (0);
-    hx &= 0x7fffffff;
-    hx |= (__uint32_t)(lx|(-lx))>>31;
-    hx = 0x7ff00000 - hx;
-    return (int)(((__uint32_t)(hx))>>31);
+
+  __int32_t hx, lx;
+  do {
+    ieee_double_shape_type ew_u;
+    ew_u.value = (x);
+    (hx) = ew_u.parts.msw;
+    (lx) = ew_u.parts.lsw;
+  } while (0);
+  hx &= 0x7fffffff;
+  hx |= (__uint32_t)(lx | (-lx)) >> 31;
+  hx = 0x7ff00000 - hx;
+  return (int)(((__uint32_t)(hx)) >> 31);
 
 }
 
-int isfinite_double(double x){
-__int32_t hx;
-do { ieee_double_shape_type gh_u; gh_u.value = (x); (hx) = gh_u.parts.msw; } while (0);
-return (int)((__uint32_t)((hx&0x7fffffff)-0x7ff00000)>>31);
+int isfinite_double(double x) {
+  __int32_t hx;
+  do {
+    ieee_double_shape_type gh_u;
+    gh_u.value = (x);
+    (hx) = gh_u.parts.msw;
+  } while (0);
+  return (int)((__uint32_t)((hx & 0x7fffffff) - 0x7ff00000) >> 31);
 }
 
 /*
- * __fpclassify Categorizes floating point value arg into the following categories:
+ * __fpclassify Categorizes floating point value arg into the following
+ * categories:
  * zero, subnormal, normal, infinite, NAN, or implementation-defined category.
- * Returns One of FP_INFINITE, FP_NAN, FP_NORMAL, FP_SUBNORMAL, FP_ZERO or implementation-defined type, specifying the category of arg.
+ * Returns One of FP_INFINITE, FP_NAN, FP_NORMAL, FP_SUBNORMAL, FP_ZERO or
+ * implementation-defined type, specifying the category of arg.
  */
 
-int __fpclassify_double (double x) {
+int __fpclassify_double(double x) {
   __uint32_t msw, lsw;
 
-  do { ieee_double_shape_type ew_u; ew_u.value = (x); (msw) = ew_u.parts.msw; (lsw) = ew_u.parts.lsw; } while (0);
+  do {
+    ieee_double_shape_type ew_u;
+    ew_u.value = (x);
+    (msw) = ew_u.parts.msw;
+    (lsw) = ew_u.parts.lsw;
+  } while (0);
 
   if ((msw == 0x00000000 && lsw == 0x00000000) ||
       (msw == 0x80000000 && lsw == 0x00000000))
@@ -3270,10 +3289,21 @@ int __fpclassify_double (double x) {
  * returns 1 if x is an integer.
  * returns false for NaNs (NaNs always compare unequal)
  * returns true for +-infinity,
- * floorf does not have the problem with overflowing the integer type used to hold the truncated result, because floorf() returns a float.
+ * floorf does not have the problem with overflowing the integer type used to
+ * hold the truncated result, because floorf() returns a float.
  */
-int isinteger_double(double x){
-  return (floor_double(x) == x);
+int isinteger_double(double x) { return (floor_double(x) == x); }
+
+int __signbit_double(double x) {
+  __uint32_t msw;
+
+  do {
+    ieee_double_shape_type gh_u;
+    gh_u.value = (x);
+    (msw) = gh_u.parts.msw;
+  } while (0);
+
+  return (msw & 0x80000000) != 0;
 }
 static const double ln2_hi_log = 6.93147180369123816490e-01,
 ln2_lo_log = 1.90821492927058770002e-10,
@@ -3346,19 +3376,15 @@ int main()
    * The log and logf procedures shall return NaN if the argument x is finite and less than 0 or x is -Inf.
    */
 
-  double x = -(__builtin_inff());
+  double x = -1.0/0.0; // -INF
+  __VERIFIER_precond_reach();
+  double res = __ieee754_log(x);
 
-  if (isinf_double(x)) {
-    __VERIFIER_precond_reach();
-
-    double res = __ieee754_log(x);
-
-    // x is -inf, result shall be NAN
-    if (!isnan_double(res)) {
-      __VERIFIER_error();
-      return 1;
-    }
- }
+  // x is -inf, result shall be NAN
+  if (!isnan_double(res)) {
+    __VERIFIER_error();
+    return 1;
+  }
 
  return 0;
 }

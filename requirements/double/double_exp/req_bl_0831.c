@@ -8,7 +8,8 @@ int main()
    * The exp and expf procedures shall return NaN if the argument x is NaN .
    */
 
-  double x = NAN;
+  double x = 0.0/0.0; // NAN
+  __VERIFIER_precond_reach();
  	double res = __ieee754_exp(x);
 
    // x is nan, the result shall be nan

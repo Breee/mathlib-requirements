@@ -10,17 +10,17 @@ int main() {
    * The pow and powf procedures shall return -0 , if the argument x is -Inf and the argument y is an odd integer < 0.
    */
 
-	double x = -INFINITY;
+	double x = -1.0/0.0; // -INF
   double y = __VERIFIER_nondet_double();
 
-  if(isinf_double(x) && y < 0.0 && isinteger_double(y) && (fmod_double(y,2.0) == 1.0)){
+  if(y < 0.0 && isinteger_double(y) && (fmod_double(y,2.0) == 1.0)){
 
     __VERIFIER_precond_reach();
 
     double res = __ieee754_pow(x, y);
 
     // result shall be -0
-    if(res != -0.0){
+    if(!(res == -0.0 && __signbit_double(res) == 1)){
       __VERIFIER_error();
       return 1;
     }

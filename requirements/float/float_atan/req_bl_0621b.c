@@ -1,5 +1,5 @@
-#include "../../includes/verify.h"
 #include "../../includes/math_functions_float.h"
+#include "../../includes/verify.h"
 #include "float_atan.h"
 
 int main() {
@@ -8,20 +8,14 @@ int main() {
    * The atan and atanf procedures shall return +-pi/2 if the argument is +-Inf.
    */
 
-   float x = -INFINITY;
+  float x = -1.0f / 0.0f; // -INF
+  __VERIFIER_precond_reach();
+  float res = atan_float(x);
+  // x is +-inf the result shall be +-pi/2
+  if (res != -pi_o_2) {
+    __VERIFIER_error();
+    return 1;
+  }
 
-   // x is not +-inf we don't want to continue
-   if (isinf_float(x)) {
-
-     __VERIFIER_precond_reach();
-
-     float res = atan_float(x);
-     // x is +-inf the result shall be +-pi/2
-     if (res != (float)(-M_PI_2)) {
-       __VERIFIER_error();
-    	 return 1;
-     }
- 	 }
-
- 	return 0;
+  return 0;
 }

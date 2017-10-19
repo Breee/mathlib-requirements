@@ -10,19 +10,14 @@ int main()
    */
 
   float x = 1.0f;
+  __VERIFIER_precond_reach();
+  float res = __ieee754_acosf(x);
 
-  if (x == 1.0f) {
-
-    __VERIFIER_precond_reach();
-
-  	float res = __ieee754_acosf(x);
-
-    // x is +1, the result shall be +0
-  	if (res != 0.0f)	{
-  		__VERIFIER_error();
-  		return 1;
-  	}
-	}
+  // x is +1, the result shall be +0
+  if (!(res == 0.0f && __signbit_float(res) == 0))	{
+  	__VERIFIER_error();
+  	return 1;
+  }
 
 	return 0;
 }

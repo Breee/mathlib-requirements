@@ -10,18 +10,14 @@ int main()
    */
 
   double x = -0.0;
-
-  if (x == -0.0) {
-    __VERIFIER_precond_reach();
-
-  	double res = trunc_double(x);
+  __VERIFIER_precond_reach();
+  double res = trunc_double(x);
 
     // x is +-0, result shall be x.
-  	if (res != x) {
+  	if (!(res == -0.0 && __signbit_double(res) == 1)) {
   		__VERIFIER_error();
   		return 1;
   	}
-	}
 
 	return 0;
 }

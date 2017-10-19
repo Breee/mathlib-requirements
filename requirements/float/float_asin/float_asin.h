@@ -40,7 +40,7 @@ float __ieee754_asinf(float x) {
           }
  }
 
- w = one_asin-fabsf(x);
+ w = one_asin-fabs_float(x);
  t = w*(float)0.5;
  p = t*(pS0_asin+t*(pS1_asin+t*(pS2_asin+t*(pS3_asin+t*(pS4_asin+t*pS5_asin)))));
  q = one_asin+t*(qS1_asin+t*(qS2_asin+t*(qS3_asin+t*qS4_asin)));

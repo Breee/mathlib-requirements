@@ -10,18 +10,14 @@ int main() {
    */
 
   double x = 0.0;
+  __VERIFIER_precond_reach();
+  double res = tan_double(x);
 
-  if (x == 0.0 ) {
-    __VERIFIER_precond_reach();
-
-  	double res = tan_double(x);
-
-    // x is +-0, the result shall be 1.0
-  	if (res != x)	{
-  		__VERIFIER_error();
-  		return 1;
-  	}
-	}
+  // x is +0, the result shall be +0.
+  if (!(res == 0.0 && __signbit_double(res) == 0))	{
+  	__VERIFIER_error();
+  	return 1;
+  }
 
 	return 0;
 }

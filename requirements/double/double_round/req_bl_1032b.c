@@ -10,19 +10,13 @@ int main() {
    */
 
 	double x = -0.0;
+  __VERIFIER_precond_reach();
+  double res = round_double(x);
 
-  if(x == -0.0){
-
-    __VERIFIER_precond_reach();
-
-    double res = round_double(x);
-
-    // result shall be x
-    if(res != x){
-      __VERIFIER_error();
-      return 1;
-    }
-
+  // result shall be x
+  if(!(res == -0.0 && __signbit_double(res) == 1)){
+    __VERIFIER_error();
+    return 1;
   }
 
 	return 0;

@@ -18,7 +18,7 @@ int main() {
     	double res = __ieee754_atan2(y, x);
 
      // x is NAN, y is any or vice versa, the result shall be NAN
-     if ((isnan_double(x) || isnan_double(y)) && !isnan_double(res)) {
+     if (!isnan_double(res)) {
     		__VERIFIER_error();
     		return 1;
     	}

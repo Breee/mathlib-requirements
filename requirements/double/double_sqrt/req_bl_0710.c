@@ -17,7 +17,7 @@ int main() {
 
   	double res = __ieee754_sqrt(x);
 
-    // x is -0 , the result shall be NAN
+    // x is < -0 , the result shall be NAN
   	if (!isnan_double(res))	{
   		__VERIFIER_error();
   		return 1;

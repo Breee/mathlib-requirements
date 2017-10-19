@@ -15,7 +15,7 @@ int main() {
 	double x = 0.0;
   double y = __VERIFIER_nondet_double();
 
-  if(x == 0.0 && y < 0.0){
+  if(y < 0.0){
     __VERIFIER_precond_reach();
 
     double res = __ieee754_pow(x,y);

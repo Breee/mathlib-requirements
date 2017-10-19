@@ -7,20 +7,14 @@ int main() {
    * The floor and floorf procedures shall return the argument, if the argument x is +-0 or +-Inf.
    */
 
-  double x = INFINITY;
+  double x = 1.0/0.0; // INF
+  __VERIFIER_precond_reach();
+  double res = floor_double(x);
 
-  if (isinf_double(x)) {
-
-    __VERIFIER_precond_reach();
-
-  	double res = floor_double(x);
-
-    // x is +-0 or +-inf, result shall be x.
-  	if (res != x) {
-  		__VERIFIER_error();
-  		return 1;
-  	}
-	}
-
+  // x is +inf, result shall be +inf.
+  if (!isinf_double(res)) {
+  	__VERIFIER_error();
+  	return 1;
+  }
 	return 0;
 }

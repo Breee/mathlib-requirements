@@ -12,18 +12,14 @@ int main() {
    */
 
   double x = -0.0;
+  __VERIFIER_precond_reach();
+  double res = __ieee754_sqrt(x);
 
-  if (x == -0.0) {
-    __VERIFIER_precond_reach();
-
-    double res = __ieee754_sqrt(x);
-
-    // x  +-0, the result shall be x
-    if (res != x)	{
-      __VERIFIER_error();
-      return 1;
-    }
-	}
+  // x  -0, the result shall be -0
+  if (!(res == -0.0 && __signbit_double(res) == 1))	{
+    __VERIFIER_error();
+    return 1;
+  }
 
 	return 0;
 }

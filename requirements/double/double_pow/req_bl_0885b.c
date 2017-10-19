@@ -15,14 +15,14 @@ int main() {
   double y = __VERIFIER_nondet_double();
 
   // x = -0, y > 0, odd integer.
-  if(x == -0.0 && y > 0.0 && (fmod_double(y,2.0) == 1.0) && isinteger_double(y)){
+  if(y > 0.0 && (fmod_double(y,2.0) == 1.0) && isinteger_double(y)){
 
     __VERIFIER_precond_reach();
 
     double res = __ieee754_pow(x,y);
 
     // result shall be -0
-    if(res != -0.0){
+    if(!(res == -0.0 && __signbit_double(res) == 1)){
       __VERIFIER_error();
       return 1;
     }

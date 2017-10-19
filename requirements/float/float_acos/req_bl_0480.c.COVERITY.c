@@ -2528,25 +2528,36 @@ static __inline__ int __sputc_r(struct _reent *_ptr, int _c, FILE *_p) {
 /*
 * Defines for the different tools.
 */
-void __VERIFIER_error(){
- int *x;
- int y;
- y = *x;
+void __VERIFIER_error() {
+  *(int *)0 = 0; // Nullpointer, segfault.
 }
-
-float __VERIFIER_nondet_float(){
- float x;
- return x;
+float __VERIFIER_nondet_float() {
+  float x;
+  return x;
 }
-double __VERIFIER_nondet_double(){
- double x;
- return x;
+double __VERIFIER_nondet_double() {
+  double x;
+  return x;
 }
 void __VERIFIER_precond_reach() {
 
 
 
 }
+
+/* @(#)fdlibm.h 5.1 93/09/24 */
+/*
+ * ====================================================
+ * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
+ *
+ * Developed at SunPro, a Sun Microsystems, Inc. business.
+ * Permission to use, copy, modify, and distribute this
+ * software is freely granted, provided that this notice
+ * is preserved.
+ * ====================================================
+ */
+
+/* REDHAT LOCAL: Include files.  */
 
 
 
@@ -2910,21 +2921,6 @@ enum __fdlibm_version
 
 extern enum __fdlibm_version __fdlib_version;
 
-
-/* @(#)fdlibm.h 5.1 93/09/24 */
-/*
- * ====================================================
- * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
- *
- * Developed at SunPro, a Sun Microsystems, Inc. business.
- * Permission to use, copy, modify, and distribute this
- * software is freely granted, provided that this notice
- * is preserved.
- * ====================================================
- */
-
-/* REDHAT LOCAL: Include files.  */
-
 /* unified sys/types.h: 
    start with sef's sysvi386 version.
    merge go32 version -- a few ifdefs.
@@ -3191,51 +3187,68 @@ float floor_float(float x) {
  return x;
 }
 
+
 /*
 * preprocessed newlib functions which are used often.
 */
 
 // infinity check for floats
 int isinf_float(float x) {
- __int32_t ix;
- do { ieee_float_shape_type gf_u; gf_u.value = (x); (ix) = gf_u.word; } while (0);
- ix &= 0x7fffffff;
- return ((ix)==0x7f800000L);
+  __int32_t ix;
+  do {
+    ieee_float_shape_type gf_u;
+    gf_u.value = (x);
+    (ix) = gf_u.word;
+  } while (0);
+  ix &= 0x7fffffff;
+  return ((ix) == 0x7f800000L);
 }
-
 
 // nan check for floats
 int isnan_float(float x) {
 
 
 
-   __int32_t ix;
-   do { ieee_float_shape_type gf_u; gf_u.value = (x); (ix) = gf_u.word; } while (0);
-   ix &= 0x7fffffff;
-   return ((ix)>0x7f800000L);
+
+  __int32_t ix;
+  do {
+    ieee_float_shape_type gf_u;
+    gf_u.value = (x);
+    (ix) = gf_u.word;
+  } while (0);
+  ix &= 0x7fffffff;
+  return ((ix) > 0x7f800000L);
 
 }
-
 
 // check if value is finite
 int isfinite_float(float x) {
-__int32_t ix;
-do { ieee_float_shape_type gf_u; gf_u.value = (x); (ix) = gf_u.word; } while (0);
-ix &= 0x7fffffff;
-return (((ix)<0x7f800000L));
+  __int32_t ix;
+  do {
+    ieee_float_shape_type gf_u;
+    gf_u.value = (x);
+    (ix) = gf_u.word;
+  } while (0);
+  ix &= 0x7fffffff;
+  return (((ix) < 0x7f800000L));
 }
 
-
 /*
- * __fpclassify Categorizes floating point value arg into the following categories:
+ * __fpclassify Categorizes floating point value arg into the following
+ * categories:
  * zero, subnormal, normal, infinite, NAN, or implementation-defined category.
- * Returns One of FP_INFINITE, FP_NAN, FP_NORMAL, FP_SUBNORMAL, FP_ZERO or implementation-defined type, specifying the category of arg.
+ * Returns One of FP_INFINITE, FP_NAN, FP_NORMAL, FP_SUBNORMAL, FP_ZERO or
+ * implementation-defined type, specifying the category of arg.
  */
 
-int __fpclassify_float (float x) {
+int __fpclassify_float(float x) {
   __uint32_t w;
 
-  do { ieee_float_shape_type gf_u; gf_u.value = (x); (w) = gf_u.word; } while (0);
+  do {
+    ieee_float_shape_type gf_u;
+    gf_u.value = (x);
+    (w) = gf_u.word;
+  } while (0);
 
   if (w == 0x00000000 || w == 0x80000000)
     return 2;
@@ -3255,10 +3268,21 @@ int __fpclassify_float (float x) {
  * returns 1 if x is an integer.
  * returns false for NaNs (NaNs always compare unequal)
  * returns true for +-infinity,
- * floorf does not have the problem with overflowing the integer type used to hold the truncated result, because floorf() returns a float.
+ * floorf does not have the problem with overflowing the integer type used to
+ * hold the truncated result, because floorf() returns a float.
  */
-int isinteger_float(float x){
-  return (floor_float(x) == x);
+int isinteger_float(float x) { return (floor_float(x) == x); }
+
+int __signbit_float(float x) {
+  __uint32_t w;
+
+  do {
+    ieee_float_shape_type gf_u;
+    gf_u.value = (x);
+    (w) = gf_u.word;
+  } while (0);
+
+  return (w & 0x80000000) != 0;
 }
 static const float one_sqrt = 1.0, tiny_sqrt=1.0e-30;
 
@@ -3389,19 +3413,14 @@ int main()
    */
 
   float x = 1.0f;
+  __VERIFIER_precond_reach();
+  float res = __ieee754_acosf(x);
 
-  if (x == 1.0f) {
-
-    __VERIFIER_precond_reach();
-
-   float res = __ieee754_acosf(x);
-
-    // x is +1, the result shall be +0
-   if (res != 0.0f) {
-    __VERIFIER_error();
-    return 1;
-   }
- }
+  // x is +1, the result shall be +0
+  if (!(res == 0.0f && __signbit_float(res) == 0)) {
+   __VERIFIER_error();
+   return 1;
+  }
 
  return 0;
 }

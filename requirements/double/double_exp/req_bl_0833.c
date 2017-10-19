@@ -9,10 +9,11 @@ int main()
    * The exp and expf procedures shall return +0 if the argument x is -Inf .
    */
 
-  double x = -INFINITY;
+  double x = -1.0/0.0; // -INF
+  __VERIFIER_precond_reach();
  	double res = __ieee754_exp(x);
 
-   if (res != 0.0) {
+   if (!(res == 0.0 && __signbit_double(res) == 0)) {
    	__VERIFIER_error();
    	return 1;
    }

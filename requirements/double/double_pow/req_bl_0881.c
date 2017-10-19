@@ -10,10 +10,10 @@ int main() {
    * The pow and powf procedures shall return -Inf , if the argument x is -Inf and the argument y is an even integer > 0.
    */
 
-	double x = -INFINITY;
+	double x = -1.0/0.0; // -INF
   double y = __VERIFIER_nondet_double();
 
-  if(isinf_double(x) && y > 0.0 && isinteger_double(y) && (fmod_double(y,2.0) == 0.0)){
+  if(y > 0.0 && isinteger_double(y) && (fmod_double(y,2.0) == 0.0)){
 
     __VERIFIER_precond_reach();
 

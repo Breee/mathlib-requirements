@@ -19,7 +19,7 @@ int main()
   	double res = isfinite_double(x);
 
     // x is not inf, is not nan, the result shall be not 0.
-  	if (res == 0) {
+  	if (res == 0.0) {
   		__VERIFIER_error();
   		return 1;
   	}

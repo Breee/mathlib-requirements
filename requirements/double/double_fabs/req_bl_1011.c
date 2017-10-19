@@ -17,7 +17,7 @@ int main()
     double res = fabs_double(x);
 
     // x is +-0, result shall be +0
-    if (res != 0.0) {
+    if (!(res == 0.0 && __signbit_double(res) == 0)) {
       __VERIFIER_error();
       return 1;
     }

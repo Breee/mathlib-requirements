@@ -9,20 +9,15 @@ int main()
    * The acos and acosf procedures shall return NAN , if the argument x is +-inf
    */
 
-  double x = INFINITY;
+  double x = 1.0/0.0; // INF
+  __VERIFIER_precond_reach();
+  double res = __ieee754_acos(x);
 
-  if (isinf_double(x)) {
-
-    __VERIFIER_precond_reach();
-
-  	double res = __ieee754_acos(x);
-
-    // x is +-inf, the result shall be NAN
-  	if (!isnan_double(res)) {
-  		__VERIFIER_error();
-  		return 1;
-  	}
-	}
+  // x is +inf, the result shall be NAN
+  if (!isnan_double(res)) {
+  	__VERIFIER_error();
+  	return 1;
+  }
 
 	return 0;
 }

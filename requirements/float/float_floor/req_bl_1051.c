@@ -1,5 +1,5 @@
-#include "../../includes/verify.h"
 #include "../../includes/math_functions_float.h"
+#include "../../includes/verify.h"
 
 int main() {
 
@@ -7,18 +7,15 @@ int main() {
    * The floor and floorf procedures shall return NaN, if the argument x is NaN.
    */
 
-  float x = NAN;
-  if (isnan_float(x)) {
-    __VERIFIER_precond_reach();
+  float x = 0.0f / 0.0f; // NAN
+  __VERIFIER_precond_reach();
+  float res = floor_float(x);
 
-  	float res = floor_float(x);
+  // x is NAN the result shall be NAN
+  if (!isnan_float(res)) {
+    __VERIFIER_error();
+    return 1;
+  }
 
-    // x is NAN the result shall be NAN
-  	if (!isnan_float(res)) {
-  		__VERIFIER_error();
-  		return 1;
-  	}
-	}
-
-	return 0;
+  return 0;
 }

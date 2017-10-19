@@ -9,20 +9,15 @@ int main() {
    * The pow and powf procedures shall return 1.0 if the argument x is +1.
    */
 
-	double x = __VERIFIER_nondet_double();
+	double x = 1.0;
   double y = __VERIFIER_nondet_double();
-
-  if(x == 1.0){
-
-    __VERIFIER_precond_reach();
-
-    double res = __ieee754_pow(x,y);
-
-    // result shall be 1.0
-    if(res != 1.0){
-      __VERIFIER_error();
-      return 1;
-    }
+  __VERIFIER_precond_reach();
+  double res = __ieee754_pow(x,y);
+  
+  // result shall be 1.0
+  if(res != 1.0){
+    __VERIFIER_error();
+    return 1;
   }
 
 	return 0;

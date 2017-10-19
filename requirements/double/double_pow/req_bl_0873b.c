@@ -10,19 +10,15 @@ int main() {
    */
 
 	double x = -1.0;
-  double y = -INFINITY;
+  double y = -1.0/0.0; // -INF
+  __VERIFIER_precond_reach();
+  
+  double res = __ieee754_pow(x, y);
 
-  if(x == -1.0 && isinf_double(y)){
-
-    __VERIFIER_precond_reach();
-
-    double res = __ieee754_pow(x, y);
-
-    // result shall be 1.0
-    if(res != 1.0){
-      __VERIFIER_error();
-      return 1;
-    }
+  // result shall be 1.0
+  if(res != 1.0){
+    __VERIFIER_error();
+    return 1;
   }
 
 	return 0;

@@ -11,10 +11,10 @@ int main() {
    *   the argument x is NaN and y is not +-0 .
    */
 
-	double x = NAN;
+	double x = 0.0/0.0; // NAN
   double y = __VERIFIER_nondet_double();
 
-  if(isnan_double(x) && y != 0.0 && y != -0.0){
+  if(y != 0.0 && y != -0.0){
     __VERIFIER_precond_reach();
 
     double res = __ieee754_pow(x,y);

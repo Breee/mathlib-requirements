@@ -9,20 +9,16 @@ int main()
    * The log and logf procedures shall return +Inf, if the argument x is +Inf .
    */
 
-  double x = INFINITY;
+  double x = 1.0/0.0; // INF
+  __VERIFIER_precond_reach();
 
-  if (isinf_double(x)) {
-    __VERIFIER_precond_reach();
+  double res = __ieee754_log(x);
 
-    double res = __ieee754_log(x);
-
-    // x is +inf, result shall be +inf
-    if (!isinf_double(res)) {
-      __VERIFIER_error();
-      return 1;
-    }
-	}
-
+  // x is +inf, result shall be +inf
+  if (!isinf_double(res)) {
+    __VERIFIER_error();
+    return 1;
+  }
 
 	return 0;
 }

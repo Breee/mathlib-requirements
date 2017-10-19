@@ -11,8 +11,8 @@ int main() {
   */
 
   double x = __VERIFIER_nondet_double();
-  double y = NAN; // NAN;
-  if (!isnan_double(x) && isnan_double(y)) {
+  double y = 0.0/0.0; // NAN
+  if (!isnan_double(x)) {
 
     __VERIFIER_precond_reach();
 

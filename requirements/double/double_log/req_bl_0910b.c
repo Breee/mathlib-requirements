@@ -10,18 +10,15 @@ int main()
    */
 
   double x = -0.0;
+  __VERIFIER_precond_reach();
 
-  if (x == -0.0) {
-    __VERIFIER_precond_reach();
+  double res = __ieee754_log(x);
 
-    double res = __ieee754_log(x);
-
-    // x is +-0, the result shall be -inf
-    if (!isinf_double(res)) {
-      __VERIFIER_error();
-      return 1;
-    }
-	}
+  // x is +-0, the result shall be -inf
+  if (!isinf_double(res)) {
+    __VERIFIER_error();
+    return 1;
+  }
 
 
 	return 0;

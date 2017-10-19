@@ -10,9 +10,9 @@ int main() {
    */
 
 	double x = __VERIFIER_nondet_double();
-  double y = INFINITY;
+  double y = 1.0/0.0; // INF
 
-  if(fabs_double(x) > 1.0 && isinf_double(y)){
+  if(fabs_double(x) > 1.0){
 
     __VERIFIER_precond_reach();
 

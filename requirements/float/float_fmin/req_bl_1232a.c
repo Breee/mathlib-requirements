@@ -1,5 +1,5 @@
-#include "../../includes/verify.h"
 #include "../../includes/math_functions_float.h"
+#include "../../includes/verify.h"
 #include "float_fmin.h"
 
 int main() {
@@ -12,18 +12,14 @@ int main() {
 
   float x = 0.0f;
   float y = -0.0f;
+  __VERIFIER_precond_reach();
+  float res = fmin_float(x, y);
 
-  if (x == 0.0f && y == -0.0f) {
-    __VERIFIER_precond_reach();
+  // y is -0 and x is +0, the result shall be -0
+  if (!(res == -0.0f && __signbit_float(res) == 1)) {
+    __VERIFIER_error();
+    return 1;
+  }
 
-    float res = fmin_float(x, y);
-
-    // y is -0 and x is +0, the result shall be -0
-    if (res != -0.0f)	{
-      __VERIFIER_error();
-      return 1;
-    }
-	}
-
-	return 0;
+  return 0;
 }

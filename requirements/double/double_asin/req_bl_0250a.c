@@ -10,20 +10,16 @@ int main() {
    * The asin and asinf procedures shall return NAN, if the argument x is +-inf
    */
 
-   double x = INFINITY;
+   double x = 1.0/0.0; // INF
+   __VERIFIER_precond_reach();
+   double res = __ieee754_asin(x);
 
-   if (isinf_double(x)) {
+   // x is +-inf, the result shall be NAN
+   if (!isnan_double(res)) {
+     __VERIFIER_error();
+     return 1;
+   }
 
-     __VERIFIER_precond_reach();
-
-    	double res = __ieee754_asin(x);
-
-      // x is +-inf, the result shall be NAN
-    	if (!isnan_double(res)) {
-    		__VERIFIER_error();
-    		return 1;
-    	}
- 	}
 
 	return 0;
 }

@@ -12,18 +12,15 @@ int main() {
 
   double x = 0.0;
   double y = -0.0;
+  __VERIFIER_precond_reach();
 
-  if (x == 0.0 && y == -0.0) {
-    __VERIFIER_precond_reach();
+  double res = fmin_double(x, y);
 
-    double res = fmin_double(x, y);
-
-    // y is -0 and x is +0, the result shall be -0
-    if (res != -0.0)	{
-      __VERIFIER_error();
-      return 1;
-    }
-	}
+  // y is -0 and x is +0, the result shall be -0
+  if (!(res == -0.0 && __signbit_double(res) == 1))	{
+    __VERIFIER_error();
+    return 1;
+  }
 
 	return 0;
 }

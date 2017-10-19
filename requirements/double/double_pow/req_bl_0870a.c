@@ -12,9 +12,9 @@ int main() {
    */
 
 	double x = __VERIFIER_nondet_double();
-  double y = NAN;
+  double y = 0.0/0.0; // NAN
 
-  if(x != 1.0 && isnan_double(y)){
+  if(x != 1.0){
     __VERIFIER_precond_reach();
 
     double res = __ieee754_pow(x,y);

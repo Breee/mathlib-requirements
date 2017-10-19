@@ -10,19 +10,14 @@ int main() {
    */
 
   float x = 0.0f;
-
-  // x is not +-0 we don't want to continue
-  if (x == 0.0f) {
-    __VERIFIER_precond_reach();
-
-  	float res = __ieee754_asinf(x);
+  __VERIFIER_precond_reach();
+  float res = __ieee754_asinf(x);
 
     // x is +-0, the result shall be x
-  	if (res != x) {
+  	if (!(res == 0.0f && __signbit_float(res) == 0)) {
   		__VERIFIER_error();
   		return 1;
   	}
-	}
 
 	return 0;
 }

@@ -11,18 +11,13 @@ int main() {
 
 	double x = __VERIFIER_nondet_double();
   double y = 0.0;
+  __VERIFIER_precond_reach();
+  double res = __ieee754_pow(x, y);
 
-  if(y == 0.0){
-
-    __VERIFIER_precond_reach();
-
-    double res = __ieee754_pow(x, y);
-
-    // result shall be 1.0
-    if(res != 1.0){
-      __VERIFIER_error();
-      return 1;
-    }
+  // result shall be 1.0
+  if(res != 1.0){
+    __VERIFIER_error();
+    return 1;
   }
 
 	return 0;

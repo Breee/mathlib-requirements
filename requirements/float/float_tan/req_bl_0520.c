@@ -1,5 +1,5 @@
-#include "../../includes/verify.h"
 #include "../../includes/math_functions_float.h"
+#include "../../includes/verify.h"
 #include "float_tan.h"
 
 int main() {
@@ -9,19 +9,15 @@ int main() {
    * The tan and tanf procedures shall return NaN if the argument is NaN .
    */
 
-  float x = NAN;
+  float x = 0.0f / 0.0f; // NAN
+  __VERIFIER_precond_reach();
+  float res = tan_float(x);
 
-  if (isnan_float(x)) {
-    __VERIFIER_precond_reach();
+  // x is NAN, the result shall be NAN
+  if (!isnan_float(res)) {
+    __VERIFIER_error();
+    return 1;
+  }
 
-  	float res = tan_float(x);
-
-    // x is NAN, the result shall be NAN
-  	if (!isnan_float(res))	{
-  		__VERIFIER_error();
-  		return 1;
-  	}
-	}
-
-	return 0;
+  return 0;
 }

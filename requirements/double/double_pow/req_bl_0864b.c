@@ -17,7 +17,7 @@ int main() {
   double y = __VERIFIER_nondet_double();
 
   // x = -0, y even integer
-  if(x == -0.0 && y < 0.0 && (fmod_double(y,2.0) == 0.0) && isinteger_double(y)){
+  if(y < 0.0 && (fmod_double(y,2.0) == 0.0) && isinteger_double(y)){
     __VERIFIER_precond_reach();
 
     double res = __ieee754_pow(x,y);

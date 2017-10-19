@@ -9,20 +9,15 @@ int main() {
    * The acos and acosf procedures shall return NAN, if the argument x is NAN
    */
 
-  double x = NAN;
+  double x =  0.0/0.0; // NAN
+  __VERIFIER_precond_reach();
+  double res = __ieee754_acos(x);
 
-  if (isnan_double(x)) {
-
-    __VERIFIER_precond_reach();
-
-  	double res = __ieee754_acos(x);
-
-    // x is NAN, the result shall be NAN
-  	if (!isnan_double(res)) {
-  		__VERIFIER_error();
-  		return 1;
-  	}
-	}
+  // x is NAN, the result shall be NAN
+  if (!isnan_double(res)) {
+  	__VERIFIER_error();
+  	return 1;
+  }
 
 	return 0;
 }

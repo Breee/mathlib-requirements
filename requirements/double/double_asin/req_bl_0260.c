@@ -9,7 +9,7 @@ int main() {
    * The asin and asinf procedures shall return NAN, if the argument x is NAN
    */
 
-  double x = NAN;
+  double x = 0.0/0.0; // NAN
 
   if (isnan_double(x)) {
 

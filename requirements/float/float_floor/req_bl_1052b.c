@@ -1,27 +1,22 @@
-#include "../../includes/verify.h"
 #include "../../includes/math_functions_float.h"
-
+#include "../../includes/verify.h"
 
 int main() {
 
   /* REQ-BL-1052
-   * The floor and floorf procedures shall return the argument, if the argument x is +-0 or +-Inf.
+   * The floor and floorf procedures shall return the argument, if the argument
+   * x is +-0 or +-Inf.
    */
 
-  float x = -INFINITY;
+  float x = -1.0f / 0.0f; // -INF
+  __VERIFIER_precond_reach();
+  float res = floor_float(x);
 
-  if (isinf_float(x)) {
+  // x is -inf, result shall be -inf
+  if (!isinf_float(res)) {
+    __VERIFIER_error();
+    return 1;
+  }
 
-    __VERIFIER_precond_reach();
-
-  	float res = floor_float(x);
-
-    // x is +-0 or +-inf, result shall be x.
-  	if (res != x) {
-  		__VERIFIER_error();
-  		return 1;
-  	}
-	}
-
-	return 0;
+  return 0;
 }

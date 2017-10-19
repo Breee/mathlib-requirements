@@ -40,30 +40,32 @@
 
 /* We do not support C11 <threads.h>.  */
 
+
+/* @(#)fdlibm.h 5.1 93/09/24 */
 /*
- * Copyright (c) 1990 The Regents of the University of California.
- * All rights reserved.
+ * ====================================================
+ * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
  *
- * Redistribution and use in source and binary forms are permitted
- * provided that the above copyright notice and this paragraph are
- * duplicated in all such forms and that any documentation,
- * advertising materials, and other materials related to such
- * distribution and use acknowledge that the software was developed
- * by the University of California, Berkeley.  The name of the
- * University may not be used to endorse or promote products derived
- * from this software without specific prior written permission.
- * THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR
- * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
- * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
- *
- *	@(#)stdio.h	5.3 (Berkeley) 3/15/86
+ * Developed at SunPro, a Sun Microsystems, Inc. business.
+ * Permission to use, copy, modify, and distribute this
+ * software is freely granted, provided that this notice
+ * is preserved.
+ * ====================================================
  */
 
-/*
- * NB: to fit things in six character monocase externals, the
- * stdio code uses the prefix `__s' for stdio objects, typically
- * followed by a three-character attempt at a mnemonic.
- */
+/* REDHAT LOCAL: Include files.  */
+
+
+
+
+/* This header file provides the reentrancy.  */
+
+/* WARNING: All identifiers here must begin with an underscore.  This file is
+   included by stdio.h and others and we therefore must only use identifiers
+   in the namespace allotted to us.  */
+
+
+
 
 
 
@@ -340,391 +342,6 @@
 /* We're using GCC in C99 mode, or an unknown compiler which
   we just have to hope obeys the C99 semantics of inline.  */
 
-
-
-
-
-/* libc/sys/linux/sys/cdefs.h - Helper macros for K&R vs. ANSI C compat. */
-
-/* Written 2000 by Werner Almesberger */
-
-/*-
- * Copyright (c) 1991, 1993
- *	The Regents of the University of California.  All rights reserved.
- *
- * This code is derived from software contributed to Berkeley by
- * Berkeley Software Design, Inc.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in the
- *    documentation and/or other materials provided with the distribution.
- * 3. Neither the name of the University nor the names of its contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
- * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
- * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
- * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
- * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
- * SUCH DAMAGE.
- *
- *	@(#)cdefs.h	8.8 (Berkeley) 1/9/95
- * $FreeBSD$
- */
-
-
-
-
-/*
- *  $Id$
- */
-
-
-
-
-/*
- *  Written by Joel Sherrill <joel@OARcorp.com>.
- *
- *  COPYRIGHT (c) 1989-2014.
- *
- *  On-Line Applications Research Corporation (OAR).
- *
- *  Permission to use, copy, modify, and distribute this software for any
- *  purpose without fee is hereby granted, provided that this entire notice
- *  is included in all copies of any software which is or includes a copy
- *  or modification of this software.
- *
- *  THIS SOFTWARE IS BEING PROVIDED "AS IS", WITHOUT ANY EXPRESS OR IMPLIED
- *  WARRANTY.  IN PARTICULAR,  THE AUTHOR MAKES NO REPRESENTATION
- *  OR WARRANTY OF ANY KIND CONCERNING THE MERCHANTABILITY OF THIS
- *  SOFTWARE OR ITS FITNESS FOR ANY PARTICULAR PURPOSE.
- *
- *  $Id$
- */
-
-/*
- * Guess on types by examining *_MIN / *_MAX defines.
- */
-
-/* GCC >= 3.3.0 has __<val>__ implicitly defined. */
-typedef signed char __int8_t;
-
-typedef unsigned char __uint8_t;
-typedef short int __int16_t;
-
-typedef short unsigned int __uint16_t;
-typedef int __int32_t;
-
-typedef unsigned int __uint32_t;
-typedef long int __int64_t;
-
-typedef long unsigned int __uint64_t;
-typedef signed char __int_least8_t;
-
-typedef unsigned char __uint_least8_t;
-typedef short int __int_least16_t;
-
-typedef short unsigned int __uint_least16_t;
-typedef int __int_least32_t;
-
-typedef unsigned int __uint_least32_t;
-typedef long int __int_least64_t;
-
-typedef long unsigned int __uint_least64_t;
-typedef long int __intptr_t;
-
-typedef long unsigned int __uintptr_t;
-/*
- *  Written by Joel Sherrill <joel@OARcorp.com>.
- *
- *  COPYRIGHT (c) 1989-2014.
- *
- *  On-Line Applications Research Corporation (OAR).
- *
- *  Permission to use, copy, modify, and distribute this software for any
- *  purpose without fee is hereby granted, provided that this entire notice
- *  is included in all copies of any software which is or includes a copy
- *  or modification of this software.
- *
- *  THIS SOFTWARE IS BEING PROVIDED "AS IS", WITHOUT ANY EXPRESS OR IMPLIED
- *  WARRANTY.  IN PARTICULAR,  THE AUTHOR MAKES NO REPRESENTATION
- *  OR WARRANTY OF ANY KIND CONCERNING THE MERCHANTABILITY OF THIS
- *  SOFTWARE OR ITS FITNESS FOR ANY PARTICULAR PURPOSE.
- *
- *  $Id$
- */
-
-/* Copyright (C) 1989-2015 Free Software Foundation, Inc.
-
-This file is part of GCC.
-
-GCC is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 3, or (at your option)
-any later version.
-
-GCC is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-Under Section 7 of GPL version 3, you are granted additional
-permissions described in the GCC Runtime Library Exception, version
-3.1, as published by the Free Software Foundation.
-
-You should have received a copy of the GNU General Public License and
-a copy of the GCC Runtime Library Exception along with this program;
-see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
-<http://www.gnu.org/licenses/>.  */
-
-/*
- * ISO C Standard:  7.17  Common definitions  <stddef.h>
- */
-
-
-
-
-
-
-/* Any one of these symbols __need_* means that GNU libc
-   wants us just to define one data type.  So don't define
-   the symbols that indicate this file's entire job has been done.  */
-/* This avoids lossage on SunOS but only if stdtypes.h comes first.
-   There's no way to win with the other order!  Sun lossage.  */
-
-/* On 4.3bsd-net2, make sure ansi.h is included, so we have
-   one less case to deal with in the following.  */
-
-
-
-/* On FreeBSD 5, machine/ansi.h does not exist anymore... */
-
-
-
-
-/* In 4.3bsd-net2, machine/ansi.h defines these symbols, which are
-   defined if the corresponding type is *not* defined.
-   FreeBSD-2.1 defines _MACHINE_ANSI_H_ instead of _ANSI_H_.
-   NetBSD defines _I386_ANSI_H_ and _X86_64_ANSI_H_ instead of _ANSI_H_ */
-/* Sequent's header files use _PTRDIFF_T_ in some conflicting way.
-   Just ignore it.  */
-
-
-
-
-/* On VxWorks, <type/vxTypesBase.h> may have defined macros like
-   _TYPE_size_t which will typedef size_t.  fixincludes patched the
-   vxTypesBase.h so that this macro is only defined if _GCC_SIZE_T is
-   not defined, and so that defining this macro defines _GCC_SIZE_T.
-   If we find that the macros are still defined at this point, we must
-   invoke them so that the type is defined as expected.  */
-/* In case nobody has defined these types, but we aren't running under
-   GCC 2.00, make sure that __PTRDIFF_TYPE__, __SIZE_TYPE__, and
-   __WCHAR_TYPE__ have reasonable values.  This can happen if the
-   parts of GCC is compiled by an older compiler, that actually
-   include gstddef.h, such as collect2.  */
-
-/* Signed type of difference of two pointers.  */
-
-/* Define this type if we are doing the whole job,
-   or if we want this type in particular.  */
-/* Unsigned type of `sizeof' something.  */
-
-/* Define this type if we are doing the whole job,
-   or if we want this type in particular.  */
-typedef long unsigned int size_t;
-/* Wide character type.
-   Locale-writers should change this as necessary to
-   be big enough to hold unique values not between 0 and 127,
-   and not (wchar_t) -1, for each defined multibyte character.  */
-
-/* Define this type if we are doing the whole job,
-   or if we want this type in particular.  */
-/*  In 4.3bsd-net2, leave these undefined to indicate that size_t, etc.
-    are already defined.  */
-/*  BSD/OS 3.1 and FreeBSD [23].x require the MACHINE_ANSI_H check here.  */
-/*  NetBSD 5 requires the I386_ANSI_H and X86_64_ANSI_H checks here.  */
-/* A null pointer constant.  */
-
-/*
- * Testing against Clang-specific extensions.
- */
-/*
- * This code has been put in place to help reduce the addition of
- * compiler specific defines in FreeBSD code.  It helps to aid in
- * having a compiler-agnostic source tree.
- */
-/*
- * Compiler memory barriers, specific to gcc and clang.
- */
-/* XXX: if __GNUC__ >= 2: not tested everywhere originally, where replaced */
-/*
- * The __CONCAT macro is used to concatenate parts of symbol names, e.g.
- * with "#define OLD(foo) __CONCAT(old,foo)", OLD(foo) produces oldfoo.
- * The __CONCAT macro is a bit tricky to use if it must work in non-ANSI
- * mode -- there must be no spaces between its arguments, and for nested
- * __CONCAT's, all the __CONCAT's must be at the left.  __CONCAT can also
- * concatenate double-quoted strings produced by the __STRING macro, but
- * this only works with ANSI C.
- *
- * __XSTRING is like __STRING, but it expands any macros in its argument
- * first.  It is only available with ANSI C.
- */
-/*
- * Compiler-dependent macros to help declare dead (non-returning) and
- * pure (no side effects) functions, and unused variables.  They are
- * null except for versions of gcc that are known to support the features
- * properly (old versions of gcc-2 supported the dead and pure features
- * in a different (wrong) way).  If we do not provide an implementation
- * for a given compiler, let the compile fail if it is told to use
- * a feature that we cannot live without.
- */
-/*
- * Keywords added in C11.
- */
-/*
- * Emulation of C11 _Generic().  Unlike the previously defined C11
- * keywords, it is not possible to implement this using exactly the same
- * syntax.  Therefore implement something similar under the name
- * __generic().  Unlike _Generic(), this macro can only distinguish
- * between a single type, so it requires nested invocations to
- * distinguish multiple cases.
- */
-/*
- * C99 Static array indices in function parameter declarations.  Syntax such as:
- * void bar(int myArray[static 10]);
- * is allowed in C99 but not in C++.  Define __min_size appropriately so
- * headers using it can be compiled in either language.  Use like this:
- * void bar(int myArray[__min_size(10)]);
- */
-/* XXX: should use `#if __STDC_VERSION__ < 199901'. */
-
-
-
-
-/*
- * GCC 2.95 provides `__restrict' as an extension to C90 to support the
- * C99-specific `restrict' type qualifier.  We happen to use `__restrict' as
- * a way to define the `restrict' type qualifier without disturbing older
- * software that is unaware of C99 keywords.
- */
-/*
- * GNU C version 2.96 adds explicit branch prediction so that
- * the CPU back-end can hint the processor and also so that
- * code blocks can be reordered such that the predicted path
- * sees a more linear flow, thus improving cache behavior, etc.
- *
- * The following two macros provide us with a way to utilize this
- * compiler feature.  Use __predict_true() if you expect the expression
- * to evaluate to true, and __predict_false() if you expect the
- * expression to evaluate to false.
- *
- * A few notes about usage:
- *
- *	* Generally, __predict_false() error condition checks (unless
- *	  you have some _strong_ reason to do otherwise, in which case
- *	  document it), and/or __predict_true() `no-error' condition
- *	  checks, assuming you want to optimize for the no-error case.
- *
- *	* Other than that, if you don't know the likelihood of a test
- *	  succeeding from empirical or other `hard' evidence, don't
- *	  make predictions.
- *
- *	* These are meant to be used in places that are run `a lot'.
- *	  It is wasteful to make predictions in code that is run
- *	  seldomly (e.g. at subsystem initialization time) as the
- *	  basic block reordering that this affects can often generate
- *	  larger code.
- */
-/* Only default visibility is supported on PE/COFF targets. */
-/*
- * Given the pointer x to the member m of the struct s, return
- * a pointer to the containing structure.  When using GCC, we first
- * assign pointer x to a local variable, to check that its type is
- * compatible with member m.
- */
-/*
- * Compiler-dependent macros to declare that functions take printf-like
- * or scanf-like arguments.  They are null except for versions of gcc
- * that are known to support the features properly (old versions of gcc-2
- * didn't permit keeping the keywords out of the application namespace).
- */
-/* Compiler-dependent macros that rely on FreeBSD-specific extensions. */
-/*
- * Nullability qualifiers: currently only supported by Clang.
- */
-/*
- * Type Safety Checking
- *
- * Clang provides additional attributes to enable checking type safety
- * properties that cannot be enforced by the C type system. 
- */
-/*
- * Lock annotations.
- *
- * Clang provides support for doing basic thread-safety tests at
- * compile-time, by marking which locks will/should be held when
- * entering/leaving a functions.
- *
- * Furthermore, it is also possible to annotate variables and structure
- * members to enforce that they are only accessed when certain locks are
- * held.
- */
-
-
-
-
-
-
-
-/* Structure implements a lock. */
-
-
-/* Function acquires an exclusive or shared lock. */
-
-
-
-
-
-/* Function attempts to acquire an exclusive or shared lock. */
-
-
-
-
-
-/* Function releases a lock. */
-
-
-/* Function asserts that an exclusive or shared lock is held. */
-
-
-
-
-
-/* Function requires that an exclusive or shared lock is or is not held. */
-
-
-
-
-
-
-
-/* Function should not be analyzed. */
-
-
-/* Guard variables and structure members by lock. */
-
 /* Copyright (C) 1989-2015 Free Software Foundation, Inc.
 
 This file is part of GCC.
@@ -819,6 +436,7 @@ typedef long int ptrdiff_t;
 
 /* Define this type if we are doing the whole job,
    or if we want this type in particular.  */
+typedef long unsigned int size_t;
 /* Wide character type.
    Locale-writers should change this as necessary to
    be big enough to hold unique values not between 0 and 127,
@@ -860,100 +478,6 @@ typedef struct {
   long double __max_align_ld __attribute__((__aligned__(__alignof__(long double))));
 } max_align_t;
 
-
-/* Copyright (C) 1989-2015 Free Software Foundation, Inc.
-
-This file is part of GCC.
-
-GCC is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 3, or (at your option)
-any later version.
-
-GCC is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-Under Section 7 of GPL version 3, you are granted additional
-permissions described in the GCC Runtime Library Exception, version
-3.1, as published by the Free Software Foundation.
-
-You should have received a copy of the GNU General Public License and
-a copy of the GCC Runtime Library Exception along with this program;
-see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
-<http://www.gnu.org/licenses/>.  */
-
-/*
- * ISO C Standard:  7.15  Variable arguments  <stdarg.h>
- */
-/* Define __gnuc_va_list.  */
-
-
-
-typedef __builtin_va_list __gnuc_va_list;
-
-
-/* Define the standard macros for the user,
-   if this invocation was from the user program.  */
-
-
-/*
- * <sys/reent.h> defines __FILE, _fpos_t.
- * They must be defined there because struct _reent needs them (and we don't
- * want reent.h to include this file.
- */
-
-/* This header file provides the reentrancy.  */
-
-/* WARNING: All identifiers here must begin with an underscore.  This file is
-   included by stdio.h and others and we therefore must only use identifiers
-   in the namespace allotted to us.  */
-
-
-
-
-
-
-
-/* Provide support for both ANSI and non-ANSI environments.  */
-
-/* Some ANSI environments are "broken" in the sense that __STDC__ cannot be
-   relied upon to have it's intended meaning.  Therefore we must use our own
-   concoction: _HAVE_STDC.  Always use _HAVE_STDC instead of __STDC__ in newlib
-   sources!
-
-   To get a strict ANSI C environment, define macro __STRICT_ANSI__.  This will
-   "comment out" the non-ANSI parts of the ANSI header files (non-ANSI header
-   files aren't affected).  */
-
-/* Copyright (C) 1989-2015 Free Software Foundation, Inc.
-
-This file is part of GCC.
-
-GCC is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 3, or (at your option)
-any later version.
-
-GCC is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-Under Section 7 of GPL version 3, you are granted additional
-permissions described in the GCC Runtime Library Exception, version
-3.1, as published by the Free Software Foundation.
-
-You should have received a copy of the GNU General Public License and
-a copy of the GCC Runtime Library Exception along with this program;
-see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
-<http://www.gnu.org/licenses/>.  */
-
-/*
- * ISO C Standard:  7.17  Common definitions  <stddef.h>
- */
-
 /* ANSI C namespace clean utility typedefs */
 
 /* This file defines various typedefs needed by the system calls that support
@@ -974,6 +498,62 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 /*
  *  $Id$
  */
+
+
+
+
+/*
+ *  Written by Joel Sherrill <joel@OARcorp.com>.
+ *
+ *  COPYRIGHT (c) 1989-2014.
+ *
+ *  On-Line Applications Research Corporation (OAR).
+ *
+ *  Permission to use, copy, modify, and distribute this software for any
+ *  purpose without fee is hereby granted, provided that this entire notice
+ *  is included in all copies of any software which is or includes a copy
+ *  or modification of this software.
+ *
+ *  THIS SOFTWARE IS BEING PROVIDED "AS IS", WITHOUT ANY EXPRESS OR IMPLIED
+ *  WARRANTY.  IN PARTICULAR,  THE AUTHOR MAKES NO REPRESENTATION
+ *  OR WARRANTY OF ANY KIND CONCERNING THE MERCHANTABILITY OF THIS
+ *  SOFTWARE OR ITS FITNESS FOR ANY PARTICULAR PURPOSE.
+ *
+ *  $Id$
+ */
+
+/*
+ * Guess on types by examining *_MIN / *_MAX defines.
+ */
+
+/* GCC >= 3.3.0 has __<val>__ implicitly defined. */
+typedef signed char __int8_t;
+
+typedef unsigned char __uint8_t;
+typedef short int __int16_t;
+
+typedef short unsigned int __uint16_t;
+typedef int __int32_t;
+
+typedef unsigned int __uint32_t;
+typedef long int __int64_t;
+
+typedef long unsigned int __uint64_t;
+typedef signed char __int_least8_t;
+
+typedef unsigned char __uint_least8_t;
+typedef short int __int_least16_t;
+
+typedef short unsigned int __uint_least16_t;
+typedef int __int_least32_t;
+
+typedef unsigned int __uint_least32_t;
+typedef long int __int_least64_t;
+
+typedef long unsigned int __uint_least64_t;
+typedef long int __intptr_t;
+
+typedef long unsigned int __uintptr_t;
 
 
 
@@ -1438,6 +1018,581 @@ extern struct _reent *const _global_impure_ptr ;
 void _reclaim_reent (struct _reent *);
 
 /* #define _REENT_ONLY define this to get only reentrant routines */
+/* libc/sys/linux/sys/cdefs.h - Helper macros for K&R vs. ANSI C compat. */
+
+/* Written 2000 by Werner Almesberger */
+
+/*-
+ * Copyright (c) 1991, 1993
+ *	The Regents of the University of California.  All rights reserved.
+ *
+ * This code is derived from software contributed to Berkeley by
+ * Berkeley Software Design, Inc.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. Neither the name of the University nor the names of its contributors
+ *    may be used to endorse or promote products derived from this software
+ *    without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ *
+ *	@(#)cdefs.h	8.8 (Berkeley) 1/9/95
+ * $FreeBSD$
+ */
+
+
+
+
+/*
+ *  $Id$
+ */
+/*
+ *  Written by Joel Sherrill <joel@OARcorp.com>.
+ *
+ *  COPYRIGHT (c) 1989-2014.
+ *
+ *  On-Line Applications Research Corporation (OAR).
+ *
+ *  Permission to use, copy, modify, and distribute this software for any
+ *  purpose without fee is hereby granted, provided that this entire notice
+ *  is included in all copies of any software which is or includes a copy
+ *  or modification of this software.
+ *
+ *  THIS SOFTWARE IS BEING PROVIDED "AS IS", WITHOUT ANY EXPRESS OR IMPLIED
+ *  WARRANTY.  IN PARTICULAR,  THE AUTHOR MAKES NO REPRESENTATION
+ *  OR WARRANTY OF ANY KIND CONCERNING THE MERCHANTABILITY OF THIS
+ *  SOFTWARE OR ITS FITNESS FOR ANY PARTICULAR PURPOSE.
+ *
+ *  $Id$
+ */
+
+/* Copyright (C) 1989-2015 Free Software Foundation, Inc.
+
+This file is part of GCC.
+
+GCC is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 3, or (at your option)
+any later version.
+
+GCC is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+Under Section 7 of GPL version 3, you are granted additional
+permissions described in the GCC Runtime Library Exception, version
+3.1, as published by the Free Software Foundation.
+
+You should have received a copy of the GNU General Public License and
+a copy of the GCC Runtime Library Exception along with this program;
+see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
+<http://www.gnu.org/licenses/>.  */
+
+/*
+ * ISO C Standard:  7.17  Common definitions  <stddef.h>
+ */
+
+/*
+ * Testing against Clang-specific extensions.
+ */
+/*
+ * This code has been put in place to help reduce the addition of
+ * compiler specific defines in FreeBSD code.  It helps to aid in
+ * having a compiler-agnostic source tree.
+ */
+/*
+ * Compiler memory barriers, specific to gcc and clang.
+ */
+/* XXX: if __GNUC__ >= 2: not tested everywhere originally, where replaced */
+/*
+ * The __CONCAT macro is used to concatenate parts of symbol names, e.g.
+ * with "#define OLD(foo) __CONCAT(old,foo)", OLD(foo) produces oldfoo.
+ * The __CONCAT macro is a bit tricky to use if it must work in non-ANSI
+ * mode -- there must be no spaces between its arguments, and for nested
+ * __CONCAT's, all the __CONCAT's must be at the left.  __CONCAT can also
+ * concatenate double-quoted strings produced by the __STRING macro, but
+ * this only works with ANSI C.
+ *
+ * __XSTRING is like __STRING, but it expands any macros in its argument
+ * first.  It is only available with ANSI C.
+ */
+/*
+ * Compiler-dependent macros to help declare dead (non-returning) and
+ * pure (no side effects) functions, and unused variables.  They are
+ * null except for versions of gcc that are known to support the features
+ * properly (old versions of gcc-2 supported the dead and pure features
+ * in a different (wrong) way).  If we do not provide an implementation
+ * for a given compiler, let the compile fail if it is told to use
+ * a feature that we cannot live without.
+ */
+/*
+ * Keywords added in C11.
+ */
+/*
+ * Emulation of C11 _Generic().  Unlike the previously defined C11
+ * keywords, it is not possible to implement this using exactly the same
+ * syntax.  Therefore implement something similar under the name
+ * __generic().  Unlike _Generic(), this macro can only distinguish
+ * between a single type, so it requires nested invocations to
+ * distinguish multiple cases.
+ */
+/*
+ * C99 Static array indices in function parameter declarations.  Syntax such as:
+ * void bar(int myArray[static 10]);
+ * is allowed in C99 but not in C++.  Define __min_size appropriately so
+ * headers using it can be compiled in either language.  Use like this:
+ * void bar(int myArray[__min_size(10)]);
+ */
+/* XXX: should use `#if __STDC_VERSION__ < 199901'. */
+
+
+
+
+/*
+ * GCC 2.95 provides `__restrict' as an extension to C90 to support the
+ * C99-specific `restrict' type qualifier.  We happen to use `__restrict' as
+ * a way to define the `restrict' type qualifier without disturbing older
+ * software that is unaware of C99 keywords.
+ */
+/*
+ * GNU C version 2.96 adds explicit branch prediction so that
+ * the CPU back-end can hint the processor and also so that
+ * code blocks can be reordered such that the predicted path
+ * sees a more linear flow, thus improving cache behavior, etc.
+ *
+ * The following two macros provide us with a way to utilize this
+ * compiler feature.  Use __predict_true() if you expect the expression
+ * to evaluate to true, and __predict_false() if you expect the
+ * expression to evaluate to false.
+ *
+ * A few notes about usage:
+ *
+ *	* Generally, __predict_false() error condition checks (unless
+ *	  you have some _strong_ reason to do otherwise, in which case
+ *	  document it), and/or __predict_true() `no-error' condition
+ *	  checks, assuming you want to optimize for the no-error case.
+ *
+ *	* Other than that, if you don't know the likelihood of a test
+ *	  succeeding from empirical or other `hard' evidence, don't
+ *	  make predictions.
+ *
+ *	* These are meant to be used in places that are run `a lot'.
+ *	  It is wasteful to make predictions in code that is run
+ *	  seldomly (e.g. at subsystem initialization time) as the
+ *	  basic block reordering that this affects can often generate
+ *	  larger code.
+ */
+/* Only default visibility is supported on PE/COFF targets. */
+/*
+ * Given the pointer x to the member m of the struct s, return
+ * a pointer to the containing structure.  When using GCC, we first
+ * assign pointer x to a local variable, to check that its type is
+ * compatible with member m.
+ */
+/*
+ * Compiler-dependent macros to declare that functions take printf-like
+ * or scanf-like arguments.  They are null except for versions of gcc
+ * that are known to support the features properly (old versions of gcc-2
+ * didn't permit keeping the keywords out of the application namespace).
+ */
+/* Compiler-dependent macros that rely on FreeBSD-specific extensions. */
+/*
+ * Nullability qualifiers: currently only supported by Clang.
+ */
+/*
+ * Type Safety Checking
+ *
+ * Clang provides additional attributes to enable checking type safety
+ * properties that cannot be enforced by the C type system. 
+ */
+/*
+ * Lock annotations.
+ *
+ * Clang provides support for doing basic thread-safety tests at
+ * compile-time, by marking which locks will/should be held when
+ * entering/leaving a functions.
+ *
+ * Furthermore, it is also possible to annotate variables and structure
+ * members to enforce that they are only accessed when certain locks are
+ * held.
+ */
+
+
+
+
+
+
+
+/* Structure implements a lock. */
+
+
+/* Function acquires an exclusive or shared lock. */
+
+
+
+
+
+/* Function attempts to acquire an exclusive or shared lock. */
+
+
+
+
+
+/* Function releases a lock. */
+
+
+/* Function asserts that an exclusive or shared lock is held. */
+
+
+
+
+
+/* Function requires that an exclusive or shared lock is or is not held. */
+
+
+
+
+
+
+
+/* Function should not be analyzed. */
+
+
+/* Guard variables and structure members by lock. */
+/* Provide support for both ANSI and non-ANSI environments.  */
+
+/* Some ANSI environments are "broken" in the sense that __STDC__ cannot be
+   relied upon to have it's intended meaning.  Therefore we must use our own
+   concoction: _HAVE_STDC.  Always use _HAVE_STDC instead of __STDC__ in newlib
+   sources!
+
+   To get a strict ANSI C environment, define macro __STRICT_ANSI__.  This will
+   "comment out" the non-ANSI parts of the ANSI header files (non-ANSI header
+   files aren't affected).  */
+
+
+
+/* __dmath, __fmath, and __ldmath are only here for backwards compatibility
+ * in case any code used them.  They are no longer used by Newlib, itself,
+ * other than legacy.  */
+union __dmath
+{
+  double d;
+  __ULong i[2];
+};
+
+union __fmath
+{
+  float f;
+  __ULong i[1];
+};
+/* Natural log of 2 */
+
+
+
+ /* gcc >= 3.3 implicitly defines builtins for HUGE_VALx values.  */
+/* Reentrant ANSI C functions.  */
+
+
+extern double atan (double);
+extern double cos (double);
+extern double sin (double);
+extern double tan (double);
+extern double tanh (double);
+extern double frexp (double, int *);
+extern double modf (double, double *);
+extern double ceil (double);
+extern double fabs (double);
+extern double floor (double);
+
+
+/* Non reentrant ANSI C functions.  */
+
+
+
+extern double acos (double);
+extern double asin (double);
+extern double atan2 (double, double);
+extern double cosh (double);
+extern double sinh (double);
+extern double exp (double);
+extern double ldexp (double, int);
+extern double log (double);
+extern double log10 (double);
+extern double pow (double, double);
+extern double sqrt (double);
+extern double fmod (double, double);
+
+
+
+
+/* ISO C99 types and macros. */
+
+/* FIXME:  FLT_EVAL_METHOD should somehow be gotten from float.h (which is hard,
+ * considering that the standard says the includes it defines should not
+ * include other includes that it defines) and that value used.  (This can be
+ * solved, but autoconf has a bug which makes the solution more difficult, so
+ * it has been skipped for now.)  */
+
+
+
+
+
+
+    typedef float float_t;
+    typedef double double_t;
+extern int __isinff (float x);
+extern int __isinfd (double x);
+extern int __isnanf (float x);
+extern int __isnand (double x);
+extern int __fpclassifyf (float x);
+extern int __fpclassifyd (double x);
+extern int __signbitf (float x);
+extern int __signbitd (double x);
+
+/* Note: isinf and isnan were once functions in newlib that took double
+ *       arguments.  C99 specifies that these names are reserved for macros
+ *       supporting multiple floating point types.  Thus, they are
+ *       now defined as macros.  Implementations of the old functions
+ *       taking double arguments still exist for compatibility purposes
+ *       (prototypes for them are in <ieeefp.h>).  */
+/* Non ANSI long double precision functions.  */
+
+extern int finitel (long double);
+
+/* Non ANSI double precision functions.  */
+
+extern double infinity (void);
+extern double nan (const char *);
+extern int finite (double);
+extern double copysign (double, double);
+extern double logb (double);
+extern int ilogb (double);
+
+extern double asinh (double);
+extern double cbrt (double);
+extern double nextafter (double, double);
+extern double rint (double);
+extern double scalbn (double, int);
+
+extern double exp2 (double);
+extern double scalbln (double, long int);
+extern double tgamma (double);
+extern double nearbyint (double);
+extern long int lrint (double);
+extern long long int llrint (double);
+extern double round (double);
+extern long int lround (double);
+extern long long int llround (double);
+extern double trunc (double);
+extern double remquo (double, double, int *);
+extern double fdim (double, double);
+extern double fmax (double, double);
+extern double fmin (double, double);
+extern double fma (double, double, double);
+
+
+extern double log1p (double);
+extern double expm1 (double);
+
+
+
+extern double acosh (double);
+extern double atanh (double);
+extern double remainder (double, double);
+extern double gamma (double);
+extern double lgamma (double);
+extern double erf (double);
+extern double erfc (double);
+extern double log2 (double);
+
+
+
+
+
+extern double hypot (double, double);
+
+
+
+
+/* Single precision versions of ANSI functions.  */
+
+extern float atanf (float);
+extern float cosf (float);
+extern float sinf (float);
+extern float tanf (float);
+extern float tanhf (float);
+extern float frexpf (float, int *);
+extern float modff (float, float *);
+extern float ceilf (float);
+extern float fabsf (float);
+extern float floorf (float);
+
+
+extern float acosf (float);
+extern float asinf (float);
+extern float atan2f (float, float);
+extern float coshf (float);
+extern float sinhf (float);
+extern float expf (float);
+extern float ldexpf (float, int);
+extern float logf (float);
+extern float log10f (float);
+extern float powf (float, float);
+extern float sqrtf (float);
+extern float fmodf (float, float);
+
+
+/* Other single precision functions.  */
+
+extern float exp2f (float);
+extern float scalblnf (float, long int);
+extern float tgammaf (float);
+extern float nearbyintf (float);
+extern long int lrintf (float);
+extern long long int llrintf (float);
+extern float roundf (float);
+extern long int lroundf (float);
+extern long long int llroundf (float);
+extern float truncf (float);
+extern float remquof (float, float, int *);
+extern float fdimf (float, float);
+extern float fmaxf (float, float);
+extern float fminf (float, float);
+extern float fmaf (float, float, float);
+
+extern float infinityf (void);
+extern float nanf (const char *);
+extern int finitef (float);
+extern float copysignf (float, float);
+extern float logbf (float);
+extern int ilogbf (float);
+
+extern float asinhf (float);
+extern float cbrtf (float);
+extern float nextafterf (float, float);
+extern float rintf (float);
+extern float scalbnf (float, int);
+extern float log1pf (float);
+extern float expm1f (float);
+
+
+extern float acoshf (float);
+extern float atanhf (float);
+extern float remainderf (float, float);
+extern float gammaf (float);
+extern float lgammaf (float);
+extern float erff (float);
+extern float erfcf (float);
+extern float log2f (float);
+extern float hypotf (float, float);
+
+
+/* Newlib doesn't fully support long double math functions so far.
+   On platforms where long double equals double the long double functions
+   simply call the double functions.  On Cygwin the long double functions
+   are implemented independently from newlib to be able to use optimized
+   assembler functions despite using the Microsoft x86_64 ABI. */
+extern long double hypotl (long double, long double);
+extern long double sqrtl (long double);
+extern double drem (double, double);
+extern float dremf (float, float);
+
+
+
+extern double gamma_r (double, int *);
+extern double lgamma_r (double, int *);
+extern float gammaf_r (float, int *);
+extern float lgammaf_r (float, int *);
+
+
+
+extern double y0 (double);
+extern double y1 (double);
+extern double yn (int, double);
+extern double j0 (double);
+extern double j1 (double);
+extern double jn (int, double);
+
+
+
+extern float y0f (float);
+extern float y1f (float);
+extern float ynf (int, float);
+extern float j0f (float);
+extern float j1f (float);
+extern float jnf (int, float);
+
+
+/* GNU extensions */
+/* The gamma functions use a global variable, signgam.  */
+
+
+extern int *__signgam (void);
+
+
+
+
+
+
+/* The exception structure passed to the matherr routine.  */
+/* We have a problem when using C++ since `exception' is a reserved
+   name in C++.  */
+
+
+
+struct exception
+
+{
+  int type;
+  char *name;
+  double arg1;
+  double arg2;
+  double retval;
+  int err;
+};
+
+
+
+
+extern int matherr (struct exception *e);
+
+
+/* Values for the type field of struct exception.  */
+/* Useful constants.  */
+/* Global control over fdlibm error handling.  */
+
+enum __fdlibm_version
+{
+  __fdlibm_ieee = -1,
+  __fdlibm_svid,
+  __fdlibm_xopen,
+  __fdlibm_posix
+};
+
+
+
+
+extern enum __fdlibm_version __fdlib_version;
+
 /* unified sys/types.h: 
    start with sef's sysvi386 version.
    merge go32 version -- a few ifdefs.
@@ -2094,6 +2249,597 @@ typedef __int64_t sbintime_t;
 
 /* POSIX Reader/Writer Lock Types */
 
+/* REDHAT LOCAL: Default to XOPEN_MODE.  */
+
+
+/* Most routines need to check whether a float is finite, infinite, or not a
+   number, and many need to know whether the result of an operation will
+   overflow.  These conditions depend on whether the largest exponent is
+   used for NaNs & infinities, or whether it's used for finite numbers.  The
+   macros below wrap up that kind of information:
+
+   FLT_UWORD_IS_FINITE(X)
+	True if a positive float with bitmask X is finite.
+
+   FLT_UWORD_IS_NAN(X)
+	True if a positive float with bitmask X is not a number.
+
+   FLT_UWORD_IS_INFINITE(X)
+	True if a positive float with bitmask X is +infinity.
+
+   FLT_UWORD_MAX
+	The bitmask of FLT_MAX.
+
+   FLT_UWORD_HALF_MAX
+	The bitmask of FLT_MAX/2.
+
+   FLT_UWORD_EXP_MAX
+	The bitmask of the largest finite exponent (129 if the largest
+	exponent is used for finite numbers, 128 otherwise).
+
+   FLT_UWORD_LOG_MAX
+	The bitmask of log(FLT_MAX), rounded down.  This value is the largest
+	input that can be passed to exp() without producing overflow.
+
+   FLT_UWORD_LOG_2MAX
+	The bitmask of log(2*FLT_MAX), rounded down.  This value is the
+	largest input than can be passed to cosh() without producing
+	overflow.
+
+   FLT_LARGEST_EXP
+	The largest biased exponent that can be used for finite numbers
+	(255 if the largest exponent is used for finite numbers, 254
+	otherwise) */
+/* Many routines check for zero and subnormal numbers.  Such things depend
+   on whether the target supports denormals or not:
+
+   FLT_UWORD_IS_ZERO(X)
+	True if a positive float with bitmask X is +0.	Without denormals,
+	any float with a zero exponent is a +0 representation.	With
+	denormals, the only +0 representation is a 0 bitmask.
+
+   FLT_UWORD_IS_SUBNORMAL(X)
+	True if a non-zero positive float with bitmask X is subnormal.
+	(Routines should check for zeros first.)
+
+   FLT_UWORD_MIN
+	The bitmask of the smallest float above +0.  Call this number
+	REAL_FLT_MIN...
+
+   FLT_UWORD_EXP_MIN
+	The bitmask of the float representation of REAL_FLT_MIN's exponent.
+
+   FLT_UWORD_LOG_MIN
+	The bitmask of |log(REAL_FLT_MIN)|, rounding down.
+
+   FLT_SMALLEST_EXP
+	REAL_FLT_MIN's exponent - EXP_BIAS (1 if denormals are not supported,
+	-22 if they are).
+*/
+/*
+ * set X_TLOSS = pi*2**52, which is possibly defined in <values.h>
+ * (one may replace the following line by "#include <values.h>")
+ */
+
+
+
+/* Functions that are not documented, and are not in <math.h>.  */
+
+
+
+
+extern double scalb (double, double);
+
+extern double significand (double);
+
+extern long double __ieee754_hypotl (long double, long double);
+
+/* ieee style elementary functions */
+extern double __ieee754_sqrt (double);
+extern double __ieee754_acos (double);
+extern double __ieee754_acosh (double);
+extern double __ieee754_log (double);
+extern double __ieee754_atanh (double);
+extern double __ieee754_asin (double);
+extern double __ieee754_atan2 (double,double);
+extern double __ieee754_exp (double);
+extern double __ieee754_cosh (double);
+extern double __ieee754_fmod (double,double);
+extern double __ieee754_pow (double,double);
+extern double __ieee754_lgamma_r (double,int *);
+extern double __ieee754_gamma_r (double,int *);
+extern double __ieee754_log10 (double);
+extern double __ieee754_sinh (double);
+extern double __ieee754_hypot (double,double);
+extern double __ieee754_j0 (double);
+extern double __ieee754_j1 (double);
+extern double __ieee754_y0 (double);
+extern double __ieee754_y1 (double);
+extern double __ieee754_jn (int,double);
+extern double __ieee754_yn (int,double);
+extern double __ieee754_remainder (double,double);
+extern __int32_t __ieee754_rem_pio2 (double,double*);
+
+
+
+extern double __ieee754_scalb (double,double);
+
+
+/* fdlibm kernel function */
+extern double __kernel_standard (double,double,int);
+extern double __kernel_sin (double,double,int);
+extern double __kernel_cos (double,double);
+extern double __kernel_tan (double,double,int);
+extern int __kernel_rem_pio2 (double*,double*,int,int,int,const __int32_t*);
+
+/* Undocumented float functions.  */
+
+
+
+extern float scalbf (float, float);
+
+extern float significandf (float);
+
+/* ieee style elementary float functions */
+extern float __ieee754_sqrtf (float);
+extern float __ieee754_acosf (float);
+extern float __ieee754_acoshf (float);
+extern float __ieee754_logf (float);
+extern float __ieee754_atanhf (float);
+extern float __ieee754_asinf (float);
+extern float __ieee754_atan2f (float,float);
+extern float __ieee754_expf (float);
+extern float __ieee754_coshf (float);
+extern float __ieee754_fmodf (float,float);
+extern float __ieee754_powf (float,float);
+extern float __ieee754_lgammaf_r (float,int *);
+extern float __ieee754_gammaf_r (float,int *);
+extern float __ieee754_log10f (float);
+extern float __ieee754_sinhf (float);
+extern float __ieee754_hypotf (float,float);
+extern float __ieee754_j0f (float);
+extern float __ieee754_j1f (float);
+extern float __ieee754_y0f (float);
+extern float __ieee754_y1f (float);
+extern float __ieee754_jnf (int,float);
+extern float __ieee754_ynf (int,float);
+extern float __ieee754_remainderf (float,float);
+extern __int32_t __ieee754_rem_pio2f (float,float*);
+
+
+
+extern float __ieee754_scalbf (float,float);
+
+
+/* float versions of fdlibm kernel functions */
+extern float __kernel_sinf (float,float,int);
+extern float __kernel_cosf (float,float);
+extern float __kernel_tanf (float,float,int);
+extern int __kernel_rem_pio2f (float*,float*,int,int,int,const __int32_t*);
+
+/* The original code used statements like
+	n0 = ((*(int*)&one)>>29)^1;		* index of high word *
+	ix0 = *(n0+(int*)&x);			* high word of x *
+	ix1 = *((1-n0)+(int*)&x);		* low word of x *
+   to dig two 32 bit words out of the 64 bit IEEE floating point
+   value.  That is non-ANSI, and, moreover, the gcc instruction
+   scheduler gets it wrong.  We instead use the following macros.
+   Unlike the original code, we determine the endianness at compile
+   time, not at run time; I don't see much benefit to selecting
+   endianness at run time.  */
+
+
+
+
+
+
+
+/* A union which permits us to convert between a double and two 32 bit
+   ints.  */
+typedef union
+{
+  double value;
+  struct
+  {
+    __uint32_t lsw;
+    __uint32_t msw;
+  } parts;
+} ieee_double_shape_type;
+
+
+
+/* Get two 32 bit ints from a double.  */
+/* Get the more significant 32 bit int from a double.  */
+/* Get the less significant 32 bit int from a double.  */
+/* Set a double from two 32 bit ints.  */
+/* Set the more significant 32 bits of a double from an int.  */
+/* Set the less significant 32 bits of a double from an int.  */
+/* A union which permits us to convert between a float and a 32 bit
+   int.  */
+
+typedef union
+{
+  float value;
+  __uint32_t word;
+} ieee_float_shape_type;
+
+/* Get a 32 bit int from a float.  */
+/* Set a float from a 32 bit int.  */
+/* Macros to avoid undefined behaviour that can arise if the amount
+   of a shift is exactly equal to the size of the shifted operand.  */
+static const float huge_floor = 1.0e30;
+
+float floor_float(float x) {
+ __int32_t i0,j0;
+ __uint32_t i,ix;
+ do { ieee_float_shape_type gf_u; gf_u.value = (x); (i0) = gf_u.word; } while (0);
+ ix = (i0&0x7fffffff);
+ j0 = (ix>>23)-0x7f;
+ if(j0<23) {
+     if(j0<0) {
+  if(huge_floor+x>(float)0.0) {
+      if(i0>=0) {i0=0;}
+      else if(!((ix)==0))
+   { i0=0xbf800000;}
+  }
+     } else {
+  i = (0x007fffff)>>j0;
+  if((i0&i)==0) return x;
+  if(huge_floor+x>(float)0.0) {
+      if(i0<0) i0 += (0x00800000)>>j0;
+      i0 &= (~i);
+  }
+     }
+ } else {
+     if(!((ix)<0x7f800000L)) return x+x;
+     else return x;
+ }
+ do { ieee_float_shape_type sf_u; sf_u.word = (i0); (x) = sf_u.value; } while (0);
+ return x;
+}
+
+
+/*
+* preprocessed newlib functions which are used often.
+*/
+
+// infinity check for floats
+int isinf_float(float x) {
+  __int32_t ix;
+  do {
+    ieee_float_shape_type gf_u;
+    gf_u.value = (x);
+    (ix) = gf_u.word;
+  } while (0);
+  ix &= 0x7fffffff;
+  return ((ix) == 0x7f800000L);
+}
+
+// nan check for floats
+int isnan_float(float x) {
+
+
+
+
+  __int32_t ix;
+  do {
+    ieee_float_shape_type gf_u;
+    gf_u.value = (x);
+    (ix) = gf_u.word;
+  } while (0);
+  ix &= 0x7fffffff;
+  return ((ix) > 0x7f800000L);
+
+}
+
+// check if value is finite
+int isfinite_float(float x) {
+  __int32_t ix;
+  do {
+    ieee_float_shape_type gf_u;
+    gf_u.value = (x);
+    (ix) = gf_u.word;
+  } while (0);
+  ix &= 0x7fffffff;
+  return (((ix) < 0x7f800000L));
+}
+
+/*
+ * __fpclassify Categorizes floating point value arg into the following
+ * categories:
+ * zero, subnormal, normal, infinite, NAN, or implementation-defined category.
+ * Returns One of FP_INFINITE, FP_NAN, FP_NORMAL, FP_SUBNORMAL, FP_ZERO or
+ * implementation-defined type, specifying the category of arg.
+ */
+
+int __fpclassify_float(float x) {
+  __uint32_t w;
+
+  do {
+    ieee_float_shape_type gf_u;
+    gf_u.value = (x);
+    (w) = gf_u.word;
+  } while (0);
+
+  if (w == 0x00000000 || w == 0x80000000)
+    return 2;
+  else if ((w >= 0x00800000 && w <= 0x7f7fffff) ||
+           (w >= 0x80800000 && w <= 0xff7fffff))
+    return 4;
+  else if ((w >= 0x00000001 && w <= 0x007fffff) ||
+           (w >= 0x80000001 && w <= 0x807fffff))
+    return 3;
+  else if (w == 0x7f800000 || w == 0xff800000)
+    return 1;
+  else
+    return 0;
+}
+
+/*
+ * returns 1 if x is an integer.
+ * returns false for NaNs (NaNs always compare unequal)
+ * returns true for +-infinity,
+ * floorf does not have the problem with overflowing the integer type used to
+ * hold the truncated result, because floorf() returns a float.
+ */
+int isinteger_float(float x) { return (floor_float(x) == x); }
+
+int __signbit_float(float x) {
+  __uint32_t w;
+
+  do {
+    ieee_float_shape_type gf_u;
+    gf_u.value = (x);
+    (w) = gf_u.word;
+  } while (0);
+
+  return (w & 0x80000000) != 0;
+}
+/*
+ * Copyright (c) 1990 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms are permitted
+ * provided that the above copyright notice and this paragraph are
+ * duplicated in all such forms and that any documentation,
+ * advertising materials, and other materials related to such
+ * distribution and use acknowledge that the software was developed
+ * by the University of California, Berkeley.  The name of the
+ * University may not be used to endorse or promote products derived
+ * from this software without specific prior written permission.
+ * THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR
+ * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ *	@(#)stdio.h	5.3 (Berkeley) 3/15/86
+ */
+
+/*
+ * NB: to fit things in six character monocase externals, the
+ * stdio code uses the prefix `__s' for stdio objects, typically
+ * followed by a three-character attempt at a mnemonic.
+ */
+
+
+
+
+/* Provide support for both ANSI and non-ANSI environments.  */
+
+/* Some ANSI environments are "broken" in the sense that __STDC__ cannot be
+   relied upon to have it's intended meaning.  Therefore we must use our own
+   concoction: _HAVE_STDC.  Always use _HAVE_STDC instead of __STDC__ in newlib
+   sources!
+
+   To get a strict ANSI C environment, define macro __STRICT_ANSI__.  This will
+   "comment out" the non-ANSI parts of the ANSI header files (non-ANSI header
+   files aren't affected).  */
+
+
+
+
+
+/* libc/sys/linux/sys/cdefs.h - Helper macros for K&R vs. ANSI C compat. */
+
+/* Written 2000 by Werner Almesberger */
+
+/*-
+ * Copyright (c) 1991, 1993
+ *	The Regents of the University of California.  All rights reserved.
+ *
+ * This code is derived from software contributed to Berkeley by
+ * Berkeley Software Design, Inc.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. Neither the name of the University nor the names of its contributors
+ *    may be used to endorse or promote products derived from this software
+ *    without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ *
+ *	@(#)cdefs.h	8.8 (Berkeley) 1/9/95
+ * $FreeBSD$
+ */
+
+/* Copyright (C) 1989-2015 Free Software Foundation, Inc.
+
+This file is part of GCC.
+
+GCC is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 3, or (at your option)
+any later version.
+
+GCC is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+Under Section 7 of GPL version 3, you are granted additional
+permissions described in the GCC Runtime Library Exception, version
+3.1, as published by the Free Software Foundation.
+
+You should have received a copy of the GNU General Public License and
+a copy of the GCC Runtime Library Exception along with this program;
+see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
+<http://www.gnu.org/licenses/>.  */
+
+/*
+ * ISO C Standard:  7.17  Common definitions  <stddef.h>
+ */
+
+
+
+
+
+
+/* Any one of these symbols __need_* means that GNU libc
+   wants us just to define one data type.  So don't define
+   the symbols that indicate this file's entire job has been done.  */
+/* This avoids lossage on SunOS but only if stdtypes.h comes first.
+   There's no way to win with the other order!  Sun lossage.  */
+
+/* On 4.3bsd-net2, make sure ansi.h is included, so we have
+   one less case to deal with in the following.  */
+
+
+
+/* On FreeBSD 5, machine/ansi.h does not exist anymore... */
+
+
+
+
+/* In 4.3bsd-net2, machine/ansi.h defines these symbols, which are
+   defined if the corresponding type is *not* defined.
+   FreeBSD-2.1 defines _MACHINE_ANSI_H_ instead of _ANSI_H_.
+   NetBSD defines _I386_ANSI_H_ and _X86_64_ANSI_H_ instead of _ANSI_H_ */
+/* Sequent's header files use _PTRDIFF_T_ in some conflicting way.
+   Just ignore it.  */
+
+
+
+
+/* On VxWorks, <type/vxTypesBase.h> may have defined macros like
+   _TYPE_size_t which will typedef size_t.  fixincludes patched the
+   vxTypesBase.h so that this macro is only defined if _GCC_SIZE_T is
+   not defined, and so that defining this macro defines _GCC_SIZE_T.
+   If we find that the macros are still defined at this point, we must
+   invoke them so that the type is defined as expected.  */
+/* In case nobody has defined these types, but we aren't running under
+   GCC 2.00, make sure that __PTRDIFF_TYPE__, __SIZE_TYPE__, and
+   __WCHAR_TYPE__ have reasonable values.  This can happen if the
+   parts of GCC is compiled by an older compiler, that actually
+   include gstddef.h, such as collect2.  */
+
+/* Signed type of difference of two pointers.  */
+
+/* Define this type if we are doing the whole job,
+   or if we want this type in particular.  */
+/* If this symbol has done its job, get rid of it.  */
+
+
+
+
+/* Unsigned type of `sizeof' something.  */
+
+/* Define this type if we are doing the whole job,
+   or if we want this type in particular.  */
+/* Wide character type.
+   Locale-writers should change this as necessary to
+   be big enough to hold unique values not between 0 and 127,
+   and not (wchar_t) -1, for each defined multibyte character.  */
+
+/* Define this type if we are doing the whole job,
+   or if we want this type in particular.  */
+/*  In 4.3bsd-net2, leave these undefined to indicate that size_t, etc.
+    are already defined.  */
+/*  BSD/OS 3.1 and FreeBSD [23].x require the MACHINE_ANSI_H check here.  */
+/*  NetBSD 5 requires the I386_ANSI_H and X86_64_ANSI_H checks here.  */
+/* A null pointer constant.  */
+/* Offset of member MEMBER in a struct of type TYPE. */
+
+
+/* Copyright (C) 1989-2015 Free Software Foundation, Inc.
+
+This file is part of GCC.
+
+GCC is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 3, or (at your option)
+any later version.
+
+GCC is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+Under Section 7 of GPL version 3, you are granted additional
+permissions described in the GCC Runtime Library Exception, version
+3.1, as published by the Free Software Foundation.
+
+You should have received a copy of the GNU General Public License and
+a copy of the GCC Runtime Library Exception along with this program;
+see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
+<http://www.gnu.org/licenses/>.  */
+
+/*
+ * ISO C Standard:  7.15  Variable arguments  <stdarg.h>
+ */
+/* Define __gnuc_va_list.  */
+
+
+
+typedef __builtin_va_list __gnuc_va_list;
+
+
+/* Define the standard macros for the user,
+   if this invocation was from the user program.  */
+
+
+/*
+ * <sys/reent.h> defines __FILE, _fpos_t.
+ * They must be defined there because struct _reent needs them (and we don't
+ * want reent.h to include this file.
+ */
+
+/* This header file provides the reentrancy.  */
+
+/* WARNING: All identifiers here must begin with an underscore.  This file is
+   included by stdio.h and others and we therefore must only use identifiers
+   in the namespace allotted to us.  */
+/* unified sys/types.h: 
+   start with sef's sysvi386 version.
+   merge go32 version -- a few ifdefs.
+   h8300hms, h8300xray, and sysvnecv70 disagree on the following types:
+
+   typedef int gid_t;
+   typedef int uid_t;
+   typedef int dev_t;
+   typedef int ino_t;
+   typedef int mode_t;
+   typedef int caddr_t;
+
+   however, these aren't "reasonable" values, the sysvi386 ones make far 
+   more sense, and should work sufficiently well (in particular, h8300 
+   doesn't have a stat, and the necv70 doesn't matter.) -- eichin
+ */
+
 
 
 
@@ -2528,737 +3274,21 @@ static __inline__ int __sputc_r(struct _reent *_ptr, int _c, FILE *_p) {
 /*
 * Defines for the different tools.
 */
-void __VERIFIER_error(){
- int *x;
- int y;
- y = *x;
+void __VERIFIER_error() {
+  *(int *)0 = 0; // Nullpointer, segfault.
 }
-
-float __VERIFIER_nondet_float(){
- float x;
- return x;
+float __VERIFIER_nondet_float() {
+  float x;
+  return x;
 }
-double __VERIFIER_nondet_double(){
- double x;
- return x;
+double __VERIFIER_nondet_double() {
+  double x;
+  return x;
 }
 void __VERIFIER_precond_reach() {
 
 
 
-}
-
-
-
-
-/* This header file provides the reentrancy.  */
-
-/* WARNING: All identifiers here must begin with an underscore.  This file is
-   included by stdio.h and others and we therefore must only use identifiers
-   in the namespace allotted to us.  */
-/* libc/sys/linux/sys/cdefs.h - Helper macros for K&R vs. ANSI C compat. */
-
-/* Written 2000 by Werner Almesberger */
-
-/*-
- * Copyright (c) 1991, 1993
- *	The Regents of the University of California.  All rights reserved.
- *
- * This code is derived from software contributed to Berkeley by
- * Berkeley Software Design, Inc.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in the
- *    documentation and/or other materials provided with the distribution.
- * 3. Neither the name of the University nor the names of its contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
- * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
- * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
- * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
- * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
- * SUCH DAMAGE.
- *
- *	@(#)cdefs.h	8.8 (Berkeley) 1/9/95
- * $FreeBSD$
- */
-/* Provide support for both ANSI and non-ANSI environments.  */
-
-/* Some ANSI environments are "broken" in the sense that __STDC__ cannot be
-   relied upon to have it's intended meaning.  Therefore we must use our own
-   concoction: _HAVE_STDC.  Always use _HAVE_STDC instead of __STDC__ in newlib
-   sources!
-
-   To get a strict ANSI C environment, define macro __STRICT_ANSI__.  This will
-   "comment out" the non-ANSI parts of the ANSI header files (non-ANSI header
-   files aren't affected).  */
-
-
-
-/* __dmath, __fmath, and __ldmath are only here for backwards compatibility
- * in case any code used them.  They are no longer used by Newlib, itself,
- * other than legacy.  */
-union __dmath
-{
-  double d;
-  __ULong i[2];
-};
-
-union __fmath
-{
-  float f;
-  __ULong i[1];
-};
-/* Natural log of 2 */
-
-
-
- /* gcc >= 3.3 implicitly defines builtins for HUGE_VALx values.  */
-/* Reentrant ANSI C functions.  */
-
-
-extern double atan (double);
-extern double cos (double);
-extern double sin (double);
-extern double tan (double);
-extern double tanh (double);
-extern double frexp (double, int *);
-extern double modf (double, double *);
-extern double ceil (double);
-extern double fabs (double);
-extern double floor (double);
-
-
-/* Non reentrant ANSI C functions.  */
-
-
-
-extern double acos (double);
-extern double asin (double);
-extern double atan2 (double, double);
-extern double cosh (double);
-extern double sinh (double);
-extern double exp (double);
-extern double ldexp (double, int);
-extern double log (double);
-extern double log10 (double);
-extern double pow (double, double);
-extern double sqrt (double);
-extern double fmod (double, double);
-
-
-
-
-/* ISO C99 types and macros. */
-
-/* FIXME:  FLT_EVAL_METHOD should somehow be gotten from float.h (which is hard,
- * considering that the standard says the includes it defines should not
- * include other includes that it defines) and that value used.  (This can be
- * solved, but autoconf has a bug which makes the solution more difficult, so
- * it has been skipped for now.)  */
-
-
-
-
-
-
-    typedef float float_t;
-    typedef double double_t;
-extern int __isinff (float x);
-extern int __isinfd (double x);
-extern int __isnanf (float x);
-extern int __isnand (double x);
-extern int __fpclassifyf (float x);
-extern int __fpclassifyd (double x);
-extern int __signbitf (float x);
-extern int __signbitd (double x);
-
-/* Note: isinf and isnan were once functions in newlib that took double
- *       arguments.  C99 specifies that these names are reserved for macros
- *       supporting multiple floating point types.  Thus, they are
- *       now defined as macros.  Implementations of the old functions
- *       taking double arguments still exist for compatibility purposes
- *       (prototypes for them are in <ieeefp.h>).  */
-/* Non ANSI long double precision functions.  */
-
-extern int finitel (long double);
-
-/* Non ANSI double precision functions.  */
-
-extern double infinity (void);
-extern double nan (const char *);
-extern int finite (double);
-extern double copysign (double, double);
-extern double logb (double);
-extern int ilogb (double);
-
-extern double asinh (double);
-extern double cbrt (double);
-extern double nextafter (double, double);
-extern double rint (double);
-extern double scalbn (double, int);
-
-extern double exp2 (double);
-extern double scalbln (double, long int);
-extern double tgamma (double);
-extern double nearbyint (double);
-extern long int lrint (double);
-extern long long int llrint (double);
-extern double round (double);
-extern long int lround (double);
-extern long long int llround (double);
-extern double trunc (double);
-extern double remquo (double, double, int *);
-extern double fdim (double, double);
-extern double fmax (double, double);
-extern double fmin (double, double);
-extern double fma (double, double, double);
-
-
-extern double log1p (double);
-extern double expm1 (double);
-
-
-
-extern double acosh (double);
-extern double atanh (double);
-extern double remainder (double, double);
-extern double gamma (double);
-extern double lgamma (double);
-extern double erf (double);
-extern double erfc (double);
-extern double log2 (double);
-
-
-
-
-
-extern double hypot (double, double);
-
-
-
-
-/* Single precision versions of ANSI functions.  */
-
-extern float atanf (float);
-extern float cosf (float);
-extern float sinf (float);
-extern float tanf (float);
-extern float tanhf (float);
-extern float frexpf (float, int *);
-extern float modff (float, float *);
-extern float ceilf (float);
-extern float fabsf (float);
-extern float floorf (float);
-
-
-extern float acosf (float);
-extern float asinf (float);
-extern float atan2f (float, float);
-extern float coshf (float);
-extern float sinhf (float);
-extern float expf (float);
-extern float ldexpf (float, int);
-extern float logf (float);
-extern float log10f (float);
-extern float powf (float, float);
-extern float sqrtf (float);
-extern float fmodf (float, float);
-
-
-/* Other single precision functions.  */
-
-extern float exp2f (float);
-extern float scalblnf (float, long int);
-extern float tgammaf (float);
-extern float nearbyintf (float);
-extern long int lrintf (float);
-extern long long int llrintf (float);
-extern float roundf (float);
-extern long int lroundf (float);
-extern long long int llroundf (float);
-extern float truncf (float);
-extern float remquof (float, float, int *);
-extern float fdimf (float, float);
-extern float fmaxf (float, float);
-extern float fminf (float, float);
-extern float fmaf (float, float, float);
-
-extern float infinityf (void);
-extern float nanf (const char *);
-extern int finitef (float);
-extern float copysignf (float, float);
-extern float logbf (float);
-extern int ilogbf (float);
-
-extern float asinhf (float);
-extern float cbrtf (float);
-extern float nextafterf (float, float);
-extern float rintf (float);
-extern float scalbnf (float, int);
-extern float log1pf (float);
-extern float expm1f (float);
-
-
-extern float acoshf (float);
-extern float atanhf (float);
-extern float remainderf (float, float);
-extern float gammaf (float);
-extern float lgammaf (float);
-extern float erff (float);
-extern float erfcf (float);
-extern float log2f (float);
-extern float hypotf (float, float);
-
-
-/* Newlib doesn't fully support long double math functions so far.
-   On platforms where long double equals double the long double functions
-   simply call the double functions.  On Cygwin the long double functions
-   are implemented independently from newlib to be able to use optimized
-   assembler functions despite using the Microsoft x86_64 ABI. */
-extern long double hypotl (long double, long double);
-extern long double sqrtl (long double);
-extern double drem (double, double);
-extern float dremf (float, float);
-
-
-
-extern double gamma_r (double, int *);
-extern double lgamma_r (double, int *);
-extern float gammaf_r (float, int *);
-extern float lgammaf_r (float, int *);
-
-
-
-extern double y0 (double);
-extern double y1 (double);
-extern double yn (int, double);
-extern double j0 (double);
-extern double j1 (double);
-extern double jn (int, double);
-
-
-
-extern float y0f (float);
-extern float y1f (float);
-extern float ynf (int, float);
-extern float j0f (float);
-extern float j1f (float);
-extern float jnf (int, float);
-
-
-/* GNU extensions */
-/* The gamma functions use a global variable, signgam.  */
-
-
-extern int *__signgam (void);
-
-
-
-
-
-
-/* The exception structure passed to the matherr routine.  */
-/* We have a problem when using C++ since `exception' is a reserved
-   name in C++.  */
-
-
-
-struct exception
-
-{
-  int type;
-  char *name;
-  double arg1;
-  double arg2;
-  double retval;
-  int err;
-};
-
-
-
-
-extern int matherr (struct exception *e);
-
-
-/* Values for the type field of struct exception.  */
-/* Useful constants.  */
-/* Global control over fdlibm error handling.  */
-
-enum __fdlibm_version
-{
-  __fdlibm_ieee = -1,
-  __fdlibm_svid,
-  __fdlibm_xopen,
-  __fdlibm_posix
-};
-
-
-
-
-extern enum __fdlibm_version __fdlib_version;
-
-
-/* @(#)fdlibm.h 5.1 93/09/24 */
-/*
- * ====================================================
- * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
- *
- * Developed at SunPro, a Sun Microsystems, Inc. business.
- * Permission to use, copy, modify, and distribute this
- * software is freely granted, provided that this notice
- * is preserved.
- * ====================================================
- */
-
-/* REDHAT LOCAL: Include files.  */
-
-/* unified sys/types.h: 
-   start with sef's sysvi386 version.
-   merge go32 version -- a few ifdefs.
-   h8300hms, h8300xray, and sysvnecv70 disagree on the following types:
-
-   typedef int gid_t;
-   typedef int uid_t;
-   typedef int dev_t;
-   typedef int ino_t;
-   typedef int mode_t;
-   typedef int caddr_t;
-
-   however, these aren't "reasonable" values, the sysvi386 ones make far 
-   more sense, and should work sufficiently well (in particular, h8300 
-   doesn't have a stat, and the necv70 doesn't matter.) -- eichin
- */
-
-/* REDHAT LOCAL: Default to XOPEN_MODE.  */
-
-
-/* Most routines need to check whether a float is finite, infinite, or not a
-   number, and many need to know whether the result of an operation will
-   overflow.  These conditions depend on whether the largest exponent is
-   used for NaNs & infinities, or whether it's used for finite numbers.  The
-   macros below wrap up that kind of information:
-
-   FLT_UWORD_IS_FINITE(X)
-	True if a positive float with bitmask X is finite.
-
-   FLT_UWORD_IS_NAN(X)
-	True if a positive float with bitmask X is not a number.
-
-   FLT_UWORD_IS_INFINITE(X)
-	True if a positive float with bitmask X is +infinity.
-
-   FLT_UWORD_MAX
-	The bitmask of FLT_MAX.
-
-   FLT_UWORD_HALF_MAX
-	The bitmask of FLT_MAX/2.
-
-   FLT_UWORD_EXP_MAX
-	The bitmask of the largest finite exponent (129 if the largest
-	exponent is used for finite numbers, 128 otherwise).
-
-   FLT_UWORD_LOG_MAX
-	The bitmask of log(FLT_MAX), rounded down.  This value is the largest
-	input that can be passed to exp() without producing overflow.
-
-   FLT_UWORD_LOG_2MAX
-	The bitmask of log(2*FLT_MAX), rounded down.  This value is the
-	largest input than can be passed to cosh() without producing
-	overflow.
-
-   FLT_LARGEST_EXP
-	The largest biased exponent that can be used for finite numbers
-	(255 if the largest exponent is used for finite numbers, 254
-	otherwise) */
-/* Many routines check for zero and subnormal numbers.  Such things depend
-   on whether the target supports denormals or not:
-
-   FLT_UWORD_IS_ZERO(X)
-	True if a positive float with bitmask X is +0.	Without denormals,
-	any float with a zero exponent is a +0 representation.	With
-	denormals, the only +0 representation is a 0 bitmask.
-
-   FLT_UWORD_IS_SUBNORMAL(X)
-	True if a non-zero positive float with bitmask X is subnormal.
-	(Routines should check for zeros first.)
-
-   FLT_UWORD_MIN
-	The bitmask of the smallest float above +0.  Call this number
-	REAL_FLT_MIN...
-
-   FLT_UWORD_EXP_MIN
-	The bitmask of the float representation of REAL_FLT_MIN's exponent.
-
-   FLT_UWORD_LOG_MIN
-	The bitmask of |log(REAL_FLT_MIN)|, rounding down.
-
-   FLT_SMALLEST_EXP
-	REAL_FLT_MIN's exponent - EXP_BIAS (1 if denormals are not supported,
-	-22 if they are).
-*/
-/*
- * set X_TLOSS = pi*2**52, which is possibly defined in <values.h>
- * (one may replace the following line by "#include <values.h>")
- */
-
-
-
-/* Functions that are not documented, and are not in <math.h>.  */
-
-
-
-
-extern double scalb (double, double);
-
-extern double significand (double);
-
-extern long double __ieee754_hypotl (long double, long double);
-
-/* ieee style elementary functions */
-extern double __ieee754_sqrt (double);
-extern double __ieee754_acos (double);
-extern double __ieee754_acosh (double);
-extern double __ieee754_log (double);
-extern double __ieee754_atanh (double);
-extern double __ieee754_asin (double);
-extern double __ieee754_atan2 (double,double);
-extern double __ieee754_exp (double);
-extern double __ieee754_cosh (double);
-extern double __ieee754_fmod (double,double);
-extern double __ieee754_pow (double,double);
-extern double __ieee754_lgamma_r (double,int *);
-extern double __ieee754_gamma_r (double,int *);
-extern double __ieee754_log10 (double);
-extern double __ieee754_sinh (double);
-extern double __ieee754_hypot (double,double);
-extern double __ieee754_j0 (double);
-extern double __ieee754_j1 (double);
-extern double __ieee754_y0 (double);
-extern double __ieee754_y1 (double);
-extern double __ieee754_jn (int,double);
-extern double __ieee754_yn (int,double);
-extern double __ieee754_remainder (double,double);
-extern __int32_t __ieee754_rem_pio2 (double,double*);
-
-
-
-extern double __ieee754_scalb (double,double);
-
-
-/* fdlibm kernel function */
-extern double __kernel_standard (double,double,int);
-extern double __kernel_sin (double,double,int);
-extern double __kernel_cos (double,double);
-extern double __kernel_tan (double,double,int);
-extern int __kernel_rem_pio2 (double*,double*,int,int,int,const __int32_t*);
-
-/* Undocumented float functions.  */
-
-
-
-extern float scalbf (float, float);
-
-extern float significandf (float);
-
-/* ieee style elementary float functions */
-extern float __ieee754_sqrtf (float);
-extern float __ieee754_acosf (float);
-extern float __ieee754_acoshf (float);
-extern float __ieee754_logf (float);
-extern float __ieee754_atanhf (float);
-extern float __ieee754_asinf (float);
-extern float __ieee754_atan2f (float,float);
-extern float __ieee754_expf (float);
-extern float __ieee754_coshf (float);
-extern float __ieee754_fmodf (float,float);
-extern float __ieee754_powf (float,float);
-extern float __ieee754_lgammaf_r (float,int *);
-extern float __ieee754_gammaf_r (float,int *);
-extern float __ieee754_log10f (float);
-extern float __ieee754_sinhf (float);
-extern float __ieee754_hypotf (float,float);
-extern float __ieee754_j0f (float);
-extern float __ieee754_j1f (float);
-extern float __ieee754_y0f (float);
-extern float __ieee754_y1f (float);
-extern float __ieee754_jnf (int,float);
-extern float __ieee754_ynf (int,float);
-extern float __ieee754_remainderf (float,float);
-extern __int32_t __ieee754_rem_pio2f (float,float*);
-
-
-
-extern float __ieee754_scalbf (float,float);
-
-
-/* float versions of fdlibm kernel functions */
-extern float __kernel_sinf (float,float,int);
-extern float __kernel_cosf (float,float);
-extern float __kernel_tanf (float,float,int);
-extern int __kernel_rem_pio2f (float*,float*,int,int,int,const __int32_t*);
-
-/* The original code used statements like
-	n0 = ((*(int*)&one)>>29)^1;		* index of high word *
-	ix0 = *(n0+(int*)&x);			* high word of x *
-	ix1 = *((1-n0)+(int*)&x);		* low word of x *
-   to dig two 32 bit words out of the 64 bit IEEE floating point
-   value.  That is non-ANSI, and, moreover, the gcc instruction
-   scheduler gets it wrong.  We instead use the following macros.
-   Unlike the original code, we determine the endianness at compile
-   time, not at run time; I don't see much benefit to selecting
-   endianness at run time.  */
-
-
-
-
-
-
-
-/* A union which permits us to convert between a double and two 32 bit
-   ints.  */
-typedef union
-{
-  double value;
-  struct
-  {
-    __uint32_t lsw;
-    __uint32_t msw;
-  } parts;
-} ieee_double_shape_type;
-
-
-
-/* Get two 32 bit ints from a double.  */
-/* Get the more significant 32 bit int from a double.  */
-/* Get the less significant 32 bit int from a double.  */
-/* Set a double from two 32 bit ints.  */
-/* Set the more significant 32 bits of a double from an int.  */
-/* Set the less significant 32 bits of a double from an int.  */
-/* A union which permits us to convert between a float and a 32 bit
-   int.  */
-
-typedef union
-{
-  float value;
-  __uint32_t word;
-} ieee_float_shape_type;
-
-/* Get a 32 bit int from a float.  */
-/* Set a float from a 32 bit int.  */
-/* Macros to avoid undefined behaviour that can arise if the amount
-   of a shift is exactly equal to the size of the shifted operand.  */
-static const float huge_floor = 1.0e30;
-
-float floor_float(float x) {
- __int32_t i0,j0;
- __uint32_t i,ix;
- do { ieee_float_shape_type gf_u; gf_u.value = (x); (i0) = gf_u.word; } while (0);
- ix = (i0&0x7fffffff);
- j0 = (ix>>23)-0x7f;
- if(j0<23) {
-     if(j0<0) {
-  if(huge_floor+x>(float)0.0) {
-      if(i0>=0) {i0=0;}
-      else if(!((ix)==0))
-   { i0=0xbf800000;}
-  }
-     } else {
-  i = (0x007fffff)>>j0;
-  if((i0&i)==0) return x;
-  if(huge_floor+x>(float)0.0) {
-      if(i0<0) i0 += (0x00800000)>>j0;
-      i0 &= (~i);
-  }
-     }
- } else {
-     if(!((ix)<0x7f800000L)) return x+x;
-     else return x;
- }
- do { ieee_float_shape_type sf_u; sf_u.word = (i0); (x) = sf_u.value; } while (0);
- return x;
-}
-
-/*
-* preprocessed newlib functions which are used often.
-*/
-
-// infinity check for floats
-int isinf_float(float x) {
- __int32_t ix;
- do { ieee_float_shape_type gf_u; gf_u.value = (x); (ix) = gf_u.word; } while (0);
- ix &= 0x7fffffff;
- return ((ix)==0x7f800000L);
-}
-
-
-// nan check for floats
-int isnan_float(float x) {
-
-
-
-   __int32_t ix;
-   do { ieee_float_shape_type gf_u; gf_u.value = (x); (ix) = gf_u.word; } while (0);
-   ix &= 0x7fffffff;
-   return ((ix)>0x7f800000L);
-
-}
-
-
-// check if value is finite
-int isfinite_float(float x) {
-__int32_t ix;
-do { ieee_float_shape_type gf_u; gf_u.value = (x); (ix) = gf_u.word; } while (0);
-ix &= 0x7fffffff;
-return (((ix)<0x7f800000L));
-}
-
-
-/*
- * __fpclassify Categorizes floating point value arg into the following categories:
- * zero, subnormal, normal, infinite, NAN, or implementation-defined category.
- * Returns One of FP_INFINITE, FP_NAN, FP_NORMAL, FP_SUBNORMAL, FP_ZERO or implementation-defined type, specifying the category of arg.
- */
-
-int __fpclassify_float (float x) {
-  __uint32_t w;
-
-  do { ieee_float_shape_type gf_u; gf_u.value = (x); (w) = gf_u.word; } while (0);
-
-  if (w == 0x00000000 || w == 0x80000000)
-    return 2;
-  else if ((w >= 0x00800000 && w <= 0x7f7fffff) ||
-           (w >= 0x80800000 && w <= 0xff7fffff))
-    return 4;
-  else if ((w >= 0x00000001 && w <= 0x007fffff) ||
-           (w >= 0x80000001 && w <= 0x807fffff))
-    return 3;
-  else if (w == 0x7f800000 || w == 0xff800000)
-    return 1;
-  else
-    return 0;
-}
-
-/*
- * returns 1 if x is an integer.
- * returns false for NaNs (NaNs always compare unequal)
- * returns true for +-infinity,
- * floorf does not have the problem with overflowing the integer type used to hold the truncated result, because floorf() returns a float.
- */
-int isinteger_float(float x){
-  return (floor_float(x) == x);
 }
 float fabs_float(float x) {
 __uint32_t ix;
@@ -3268,177 +3298,206 @@ do { ieee_float_shape_type sf_u; sf_u.word = (ix&0x7fffffff); (x) = sf_u.value; 
 }
 
 static const float atanhi_atan[] = {
-  4.6364760399e-01,
-  7.8539812565e-01,
-  9.8279368877e-01,
-  1.5707962513e+00,
+    4.6364760399e-01, 7.8539812565e-01, 9.8279368877e-01, 1.5707962513e+00,
 };
-
 
 static const float atanlo_atan[] = {
-  5.0121582440e-09,
-  3.7748947079e-08,
-  3.4473217170e-08,
-  7.5497894159e-08,
+    5.0121582440e-09, 3.7748947079e-08, 3.4473217170e-08, 7.5497894159e-08,
 };
-
 
 static const float aT_atan[] = {
-  3.3333334327e-01,
- -2.0000000298e-01,
-  1.4285714924e-01,
- -1.1111110449e-01,
-  9.0908870101e-02,
- -7.6918758452e-02,
-  6.6610731184e-02,
- -5.8335702866e-02,
-  4.9768779427e-02,
- -3.6531571299e-02,
-  1.6285819933e-02,
+    3.3333334327e-01, -2.0000000298e-01, 1.4285714924e-01, -1.1111110449e-01,
+    9.0908870101e-02, -7.6918758452e-02, 6.6610731184e-02, -5.8335702866e-02,
+    4.9768779427e-02, -3.6531571299e-02, 1.6285819933e-02,
 };
 
-
-static const float one_atan = 1.0,
-huge_atan = 1.0e30;
-
+static const float one_atan = 1.0, huge_atan = 1.0e30,
+                   pi_o_4 = 7.8539818525e-01, pi_o_2 = 1.5707963705e+00,
+                   pi = 3.1415927410e+00;
 
 float atan_float(float x) {
- float w,s1,s2,z;
- __int32_t ix,hx,id;
+  float w, s1, s2, z;
+  __int32_t ix, hx, id;
 
- do { ieee_float_shape_type gf_u; gf_u.value = (x); (hx) = gf_u.word; } while (0);
- ix = hx&0x7fffffff;
- if(ix>=0x50800000) {
-     if(((ix)>0x7f800000L))
-  return x+x;
-     if(hx>0) return atanhi_atan[3]+atanlo_atan[3];
-     else return -atanhi_atan[3]-atanlo_atan[3];
- } if (ix < 0x3ee00000) {
-     if (ix < 0x31000000) {
-  if(huge_atan+x>one_atan) return x;
-     }
-     id = -1;
- } else {
- x = fabs_float(x);
- if (ix < 0x3f980000) {
-     if (ix < 0x3f300000) {
-  id = 0; x = ((float)2.0*x-one_atan)/((float)2.0+x);
-     } else {
-  id = 1; x = (x-one_atan)/(x+one_atan);
-     }
- } else {
-     if (ix < 0x401c0000) {
-  id = 2; x = (x-(float)1.5)/(one_atan+(float)1.5*x);
-     } else {
-  id = 3; x = -(float)1.0/x;
-     }
- }}
-
- z = x*x;
- w = z*z;
-
- s1 = z*(aT_atan[0]+w*(aT_atan[2]+w*(aT_atan[4]+w*(aT_atan[6]+w*(aT_atan[8]+w*aT_atan[10])))));
- s2 = w*(aT_atan[1]+w*(aT_atan[3]+w*(aT_atan[5]+w*(aT_atan[7]+w*aT_atan[9]))));
- if (id<0) return x - x*(s1+s2);
- else {
-     z = atanhi_atan[id] - ((x*(s1+s2) - atanlo_atan[id]) - x);
-     return (hx<0)? -z:z;
- }
-}
-
-static const float tiny_atan2 = 1.0e-30,
-zero_atan2 = 0.0,
-pi_o_4 = 7.8539818525e-01,
-pi_o_2 = 1.5707963705e+00,
-pi = 3.1415927410e+00,
-pi_lo_atan2 = -8.7422776573e-08;
-
-
-float __ieee754_atan2f(float y, float x){
- float z;
- __int32_t k,m,hx,hy,ix,iy;
-
- do { ieee_float_shape_type gf_u; gf_u.value = (x); (hx) = gf_u.word; } while (0);
- ix = hx&0x7fffffff;
- do { ieee_float_shape_type gf_u; gf_u.value = (y); (hy) = gf_u.word; } while (0);
- iy = hy&0x7fffffff;
- if(((ix)>0x7f800000L)||
-    ((iy)>0x7f800000L))
-    return x+y;
- if(hx==0x3f800000) return atan_float(y);
- m = ((hy>>31)&1)|((hx>>30)&2);
-
-
- if(((iy)==0)) {
-     switch(m) {
-  case 0:
-  case 1: return y;
-  case 2: return pi+tiny_atan2;
-  case 3: return -pi-tiny_atan2;
-     }
- }
-
- if(((ix)==0)) return (hy<0)? -pi_o_2-tiny_atan2: pi_o_2+tiny_atan2;
-
-
- if(((ix)==0x7f800000L)) {
-     if(((iy)==0x7f800000L)) {
-  switch(m) {
-      case 0: return pi_o_4+tiny_atan2;
-      case 1: return -pi_o_4-tiny_atan2;
-      case 2: return (float)3.0*pi_o_4+tiny_atan2;
-      case 3: return (float)-3.0*pi_o_4-tiny_atan2;
+  do {
+    ieee_float_shape_type gf_u;
+    gf_u.value = (x);
+    (hx) = gf_u.word;
+  } while (0);
+  ix = hx & 0x7fffffff;
+  if (ix >= 0x50800000) {
+    if (((ix) > 0x7f800000L))
+      return x + x;
+    if (hx > 0)
+      return atanhi_atan[3] + atanlo_atan[3];
+    else
+      return -atanhi_atan[3] - atanlo_atan[3];
   }
-     } else {
-  switch(m) {
-      case 0: return zero_atan2 ;
-      case 1: return -zero_atan2 ;
-      case 2: return pi+tiny_atan2 ;
-      case 3: return -pi-tiny_atan2 ;
-  }
-     }
- }
-
- if(((iy)==0x7f800000L)) return (hy<0)? -pi_o_2-tiny_atan2: pi_o_2+tiny_atan2;
-
-
- k = (iy-ix)>>23;
- if(k > 60) z=pi_o_2+(float)0.5*pi_lo_atan2;
- else if(hx<0&&k<-60) z=0.0;
- else z=atan_float(fabs_float(y/x));
- switch (m) {
-     case 0: return z ;
-     case 1: {
-            __uint32_t zh;
-        do { ieee_float_shape_type gf_u; gf_u.value = (z); (zh) = gf_u.word; } while (0);
-        do { ieee_float_shape_type sf_u; sf_u.word = (zh ^ 0x80000000); (z) = sf_u.value; } while (0);
+  if (ix < 0x3ee00000) {
+    if (ix < 0x31000000) {
+      if (huge_atan + x > one_atan)
+        return x;
+    }
+    id = -1;
+  } else {
+    x = fabs_float(x);
+    if (ix < 0x3f980000) {
+      if (ix < 0x3f300000) {
+        id = 0;
+        x = ((float)2.0 * x - one_atan) / ((float)2.0 + x);
+      } else {
+        id = 1;
+        x = (x - one_atan) / (x + one_atan);
       }
-      return z ;
-     case 2: return pi-(z-pi_lo_atan2);
-     default:
-          return (z-pi_lo_atan2)-pi;
- }
+    } else {
+      if (ix < 0x401c0000) {
+        id = 2;
+        x = (x - (float)1.5) / (one_atan + (float)1.5 * x);
+      } else {
+        id = 3;
+        x = -(float)1.0 / x;
+      }
+    }
+  }
+
+  z = x * x;
+  w = z * z;
+
+  s1 = z * (aT_atan[0] +
+            w * (aT_atan[2] +
+                 w * (aT_atan[4] +
+                      w * (aT_atan[6] + w * (aT_atan[8] + w * aT_atan[10])))));
+  s2 =
+      w *
+      (aT_atan[1] +
+       w * (aT_atan[3] + w * (aT_atan[5] + w * (aT_atan[7] + w * aT_atan[9]))));
+  if (id < 0)
+    return x - x * (s1 + s2);
+  else {
+    z = atanhi_atan[id] - ((x * (s1 + s2) - atanlo_atan[id]) - x);
+    return (hx < 0) ? -z : z;
+  }
 }
 
-int main()
-{
+static const float tiny_atan2 = 1.0e-30, zero_atan2 = 0.0,
+                   pi_lo_atan2 = -8.7422776573e-08;
+
+float __ieee754_atan2f(float y, float x) {
+  float z;
+  __int32_t k, m, hx, hy, ix, iy;
+
+  do {
+    ieee_float_shape_type gf_u;
+    gf_u.value = (x);
+    (hx) = gf_u.word;
+  } while (0);
+  ix = hx & 0x7fffffff;
+  do {
+    ieee_float_shape_type gf_u;
+    gf_u.value = (y);
+    (hy) = gf_u.word;
+  } while (0);
+  iy = hy & 0x7fffffff;
+  if (((ix) > 0x7f800000L) || ((iy) > 0x7f800000L))
+    return x + y;
+  if (hx == 0x3f800000)
+    return atan_float(y);
+  m = ((hy >> 31) & 1) | ((hx >> 30) & 2);
+
+  if (((iy) == 0)) {
+    switch (m) {
+    case 0:
+    case 1:
+      return y;
+    case 2:
+      return pi + tiny_atan2;
+    case 3:
+      return -pi - tiny_atan2;
+    }
+  }
+
+  if (((ix) == 0))
+    return (hy < 0) ? -pi_o_2 - tiny_atan2 : pi_o_2 + tiny_atan2;
+
+  if (((ix) == 0x7f800000L)) {
+    if (((iy) == 0x7f800000L)) {
+      switch (m) {
+      case 0:
+        return pi_o_4 + tiny_atan2;
+      case 1:
+        return -pi_o_4 - tiny_atan2;
+      case 2:
+        return (float)3.0 * pi_o_4 + tiny_atan2;
+      case 3:
+        return (float)-3.0 * pi_o_4 - tiny_atan2;
+      }
+    } else {
+      switch (m) {
+      case 0:
+        return zero_atan2;
+      case 1:
+        return -zero_atan2;
+      case 2:
+        return pi + tiny_atan2;
+      case 3:
+        return -pi - tiny_atan2;
+      }
+    }
+  }
+
+  if (((iy) == 0x7f800000L))
+    return (hy < 0) ? -pi_o_2 - tiny_atan2 : pi_o_2 + tiny_atan2;
+
+  k = (iy - ix) >> 23;
+  if (k > 60)
+    z = pi_o_2 + (float)0.5 * pi_lo_atan2;
+  else if (hx < 0 && k < -60)
+    z = 0.0;
+  else
+    z = atan_float(fabs_float(y / x));
+  switch (m) {
+  case 0:
+    return z;
+  case 1: {
+    __uint32_t zh;
+    do {
+      ieee_float_shape_type gf_u;
+      gf_u.value = (z);
+      (zh) = gf_u.word;
+    } while (0);
+    do {
+      ieee_float_shape_type sf_u;
+      sf_u.word = (zh ^ 0x80000000);
+      (z) = sf_u.value;
+    } while (0);
+  }
+    return z;
+  case 2:
+    return pi - (z - pi_lo_atan2);
+  default:
+    return (z - pi_lo_atan2) - pi;
+  }
+}
+
+int main() {
   float x = -0.0f;
   float y = __VERIFIER_nondet_float();
 
   /* REQ-BL-0663:
-   * The atan2 and atan2f procedures shall return pi/2, if the argument y is > 0 and the argument x is +-0
+   * The atan2 and atan2f procedures shall return pi/2, if the argument y is > 0
+   * and the argument x is +-0
    */
 
-   if (x == -0.0f && y > 0.0f) {
-     __VERIFIER_precond_reach();
+  if (y > 0.0f) {
+    __VERIFIER_precond_reach();
 
-     float res = __ieee754_atan2f(y, x);
+    float res = __ieee754_atan2f(y, x);
 
-     // x is +-0, y is > 0, the result shall be +pi/2
-     if (res != pi_o_2) {
-       __VERIFIER_error();
-       return 1;
-     }
+    // x is +-0, y is > 0, the result shall be +pi/2
+    if (res != pi_o_2) {
+      __VERIFIER_error();
+      return 1;
+    }
   }
   return 0;
 }

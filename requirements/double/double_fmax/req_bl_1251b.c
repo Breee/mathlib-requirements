@@ -5,14 +5,14 @@
 int main()
 {
 	double x = __VERIFIER_nondet_double();
-	double y = NAN; // NAN
+	double y = 0.0/0.0; // NAN
 
   /* REQ-BL-1251:
   * The fmax and fmaxf procedures shall return the one argument
   * if only the other argument is NaN.
   */
 
-  if (!isnan_double(x) && isnan_double(y)) {
+  if (!isnan_double(x)) {
 
     __VERIFIER_precond_reach();
 

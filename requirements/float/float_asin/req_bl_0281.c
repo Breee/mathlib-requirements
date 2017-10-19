@@ -11,7 +11,7 @@ int main() {
 
    float x = __VERIFIER_nondet_float();
 
-   if (x < -1.0f && x > 1.0f) {
+   if (x < -1.0f || x > 1.0f) {
 
      __VERIFIER_precond_reach();
 

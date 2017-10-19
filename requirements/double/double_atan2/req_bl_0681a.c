@@ -12,19 +12,13 @@ int main()
 
    double x = 0.0;
    double y = 0.0;
-
-   if (x == 0.0 && y == 0.0) {
-
-     __VERIFIER_precond_reach();
-
-     double res = __ieee754_atan2(y, x);
-
+   __VERIFIER_precond_reach();
+   
+   double res = __ieee754_atan2(y, x);
      // x is +0, y is +0, the result shall be +0
-     if (res != 0.0) {
-       __VERIFIER_error();
-       return 1;
-     }
- 	}
-
+   if (!(res == 0.0 && __signbit_double(res) == 0)) {
+     __VERIFIER_error();
+     return 1;
+   }
  	return 0;
 }

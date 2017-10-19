@@ -9,20 +9,14 @@ int main() {
    * The round and roundf procedures shall return the argument, if the argument x is +-0 or +-Inf .
    */
 
-	double x = INFINITY;
+	double x = 1.0/0.0; // INF
+  __VERIFIER_precond_reach();
+  double res = round_double(x);
 
+  // result shall be +inf
   if(isinf_double(x)){
-
-    __VERIFIER_precond_reach();
-
-    double res = round_double(x);
-
-    // result shall be x
-    if(res != x){
-      __VERIFIER_error();
-      return 1;
-    }
-
+    __VERIFIER_error();
+    return 1;
   }
 
 	return 0;

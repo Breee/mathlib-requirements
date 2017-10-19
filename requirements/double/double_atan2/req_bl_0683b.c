@@ -11,7 +11,7 @@ int main()
    * The atan2 and atan2f procedures shall return ±0 ,
    * if the argument ± y is finite and not 0, and the argument x is +Inf .
    */
-   double x = INFINITY;
+   double x = 1.0/0.0; // INF
    double y = __VERIFIER_nondet_double();
 
    if (isinf_double(x) && isfinite_double(y) && y > 0.0) {
@@ -20,7 +20,7 @@ int main()
      double res = __ieee754_atan2(y, x);
 
     // x is -inf, y < 0.0 and y != -inf, the result shall be 0.0
-     if (isinf_double(x) && y > 0.0 && isfinite_double(y) && res != 0.0) {
+     if (!(res == 0.0 && __signbit_double(res) == 0)) {
        __VERIFIER_error();
        return 1;
      }

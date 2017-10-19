@@ -10,9 +10,9 @@ int main() {
   * if only the other argument is NaN.
   */
 
-  double x = NAN; // NAN;
+  double x = 0.0/0.0; // NAN
   double y = __VERIFIER_nondet_double();
-  if (isnan_double(x) && !isnan_double(y)) {
+  if (!isnan_double(y)) {
 
     __VERIFIER_precond_reach();
 

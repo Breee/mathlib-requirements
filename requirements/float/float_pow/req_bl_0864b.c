@@ -1,5 +1,5 @@
-#include "../../includes/verify.h"
 #include "../../includes/math_functions_float.h"
+#include "../../includes/verify.h"
 #include "../float_fmod/float_fmod.h"
 #include "float_pow.h"
 
@@ -13,21 +13,21 @@ int main() {
    * If the argument y is < 0 and x is 0.
    */
 
-	float x = __VERIFIER_nondet_float();
+  float x = 0.0f;
   float y = __VERIFIER_nondet_float();
 
-  // x = -0, y even integer
-  if(x == -0.0f && y < 0.0f && (fmod_float(y,2.0f) == 0.0f) && isinteger_float(y)){
+  // x = 0, y even integer
+  if (y < 0.0f && (fmod_float(y, 2.0f) == 0.0f) && isinteger_float(y)) {
     __VERIFIER_precond_reach();
 
-    float res = __ieee754_powf(x,y);
+    float res = __ieee754_powf(x, y);
 
     // result shall be +Inf
-    if(!isinf_float(res)){
+    if (!isinf_float(res)) {
       __VERIFIER_error();
       return 1;
     }
   }
 
-	return 0;
+  return 0;
 }

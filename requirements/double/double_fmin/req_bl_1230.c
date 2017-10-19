@@ -11,19 +11,15 @@ int main()
    * if the arguments x and y are NaN.
    */
 
-  double x = NAN;
-  double y = NAN;
+  double x = 0.0/0.0; // NAN
+  double y = 0.0/0.0; // NAN
+  __VERIFIER_precond_reach();
+  double res = fmin_double(x, y);
 
-	if (isnan_double(x) && isnan_double(y)) {
-    __VERIFIER_precond_reach();
-
-    double res = fmin_double(x, y);
-
-    if (!isnan_double(res))	{
-      __VERIFIER_error();
-      return 1;
-    }
-	}
+  if (!isnan_double(res))	{
+    __VERIFIER_error();
+    return 1;
+  }
 
 	return 0;
 }

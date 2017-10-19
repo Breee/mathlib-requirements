@@ -12,7 +12,7 @@ int main()
    */
 
    double x = __VERIFIER_nondet_double();
-   double y = -INFINITY;
+   double y = -1.0/0.0; // -INF
 
    // x is finite or y is -inf
    if (isfinite_double(x) && isinf_double(y)) {

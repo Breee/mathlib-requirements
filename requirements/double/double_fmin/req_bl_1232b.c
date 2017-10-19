@@ -18,7 +18,7 @@ int main() {
     double res = fmin_double(x, y);
 
     // x is -0 and y is +0, the result shall be -0
-    if (res != -0.0)	{
+    if (!(res == -0.0 && __signbit_double(res) == 1))	{
       __VERIFIER_error();
       return 1;
     }

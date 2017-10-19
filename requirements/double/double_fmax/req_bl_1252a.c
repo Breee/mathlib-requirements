@@ -13,20 +13,14 @@ int main()
 
   double x = -0.0;
   double y = 0.0;
+  __VERIFIER_precond_reach();
+  double res = fmax_double(x, y);
 
-  if ((x == -0.0 && y == 0.0)) {
-
-    __VERIFIER_precond_reach();
-
-  	double res = fmax_double(x, y);
-
-    // x is -0 and y is +0, the result shall be +0
-  	if (res != 0.0)	{
-  		__VERIFIER_error();
-  		return 1;
-  	}
-
-	}
+  // x is -0 and y is +0, the result shall be +0
+  if (!(res == 0.0 && __signbit_double(res) == 0))	{
+  	__VERIFIER_error();
+  	return 1;
+  }
 
 	return 0;
 }

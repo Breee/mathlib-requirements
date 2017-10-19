@@ -1,5 +1,5 @@
-#include "../../includes/verify.h"
 #include "../../includes/math_functions_float.h"
+#include "../../includes/verify.h"
 #include "float_cos.h"
 
 int main() {
@@ -10,18 +10,13 @@ int main() {
    */
 
   float x = -0.0f;
+  __VERIFIER_precond_reach();
+  float res = cos_float(x);
 
-  if (x == -0.0f) {
-    __VERIFIER_precond_reach();
-
-  	float res = cos_float(x);
-
-    // x is +-0, the result shall be 1.0
-  	if (res != 1.0f)	{
-  		__VERIFIER_error();
-  		return 1;
-  	}
-	}
-
-	return 0;
+  // x is +-0, the result shall be 1.0
+  if (res != 1.0f) {
+    __VERIFIER_error();
+    return 1;
+  }
+  return 0;
 }
