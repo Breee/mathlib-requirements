@@ -6,7 +6,11 @@
 
 #if defined(INFER)
 
-void __VERIFIER_error() { printf("ERROR"); }
+int *__VERIFIER_error() {
+  // malloc for 10 ints
+  int *a = malloc(sizeof(int) * 10); // memory never freed.
+  return a;
+}
 
 extern float __infer_nondet_float();
 extern double __infer_nondet_double();
@@ -35,9 +39,7 @@ double __VERIFIER_nondet_double();
 
 #elif defined(CLANG)
 
-void __VERIFIER_error() {
-  *(int *)0 = 0; // Nullpointer, segfault.
-}
+void __VERIFIER_error() { printf("ERROR"); }
 
 float __VERIFIER_nondet_float();
 double __VERIFIER_nondet_double();
@@ -48,15 +50,8 @@ void __VERIFIER_error() {
   *(int *)0 = 0; // Nullpointer, segfault.
 }
 
-float __VERIFIER_nondet_float() {
-  float x;
-  return x;
-}
-
-double __VERIFIER_nondet_double() {
-  double x;
-  return x;
-}
+float __VERIFIER_nondet_float() {}
+double __VERIFIER_nondet_double() {}
 
 #elif defined(CWITNESS)
 
@@ -80,19 +75,9 @@ double __VERIFIER_nondet_double() {
 
 #else
 
-void __VERIFIER_error() {
-  *(int *)0 = 0; // Nullpointer, segfault.
-}
-
-float __VERIFIER_nondet_float() {
-  float x;
-  return x;
-}
-
-double __VERIFIER_nondet_double() {
-  double x;
-  return x;
-}
+void __VERIFIER_error() { printf("Error"); }
+float __VERIFIER_nondet_float();
+double __VERIFIER_nondet_double();
 
 #endif
 

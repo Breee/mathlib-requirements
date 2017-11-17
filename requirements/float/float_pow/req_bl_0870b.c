@@ -14,7 +14,7 @@ int main() {
   float x = 0.0f / 0.0f; // NAN
   float y = __VERIFIER_nondet_float();
 
-  if ((y != 0.0f && y != -0.0f)) {
+  if (y != 0.0f) {
     __VERIFIER_precond_reach();
 
     float res = __ieee754_powf(x, y);

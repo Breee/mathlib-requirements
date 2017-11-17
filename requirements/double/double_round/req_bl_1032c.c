@@ -14,7 +14,7 @@ int main() {
   double res = round_double(x);
 
   // result shall be +inf
-  if(isinf_double(x)){
+  if(!isinf_double(x)){
     __VERIFIER_error();
     return 1;
   }

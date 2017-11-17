@@ -12,7 +12,7 @@ int main() {
   __VERIFIER_precond_reach();
   float res = modf_float(x, &iptr);
 
-  // x is NAN, *iptr is NAN result shall be that *iptr and x is NAN
+  // x is NAN, *iptr is NAN result shall be that *iptr and res is NAN
   if (isnan_float(iptr) && !isnan_float(res)) {
     __VERIFIER_error();
     return 1;

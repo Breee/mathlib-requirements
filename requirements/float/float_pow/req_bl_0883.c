@@ -20,7 +20,7 @@ int main() {
     float res = __ieee754_powf(x, y);
 
     // result shall be +inf
-    if (isinf_float(res)) {
+    if (!isinf_float(res)) {
       __VERIFIER_error();
       return 1;
     }

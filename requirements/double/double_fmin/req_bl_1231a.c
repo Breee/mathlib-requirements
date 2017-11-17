@@ -13,17 +13,13 @@ int main() {
   double x = 0.0/0.0; // NAN
   double y = __VERIFIER_nondet_double();
   if (!isnan_double(y)) {
-
     __VERIFIER_precond_reach();
-
     double res = fmin_double(x, y);
-
     // x is NAN and y is not NAN, the result shall be y
     if (res != y)	{
       __VERIFIER_error();
       return 1;
     }
-
 	}
 
 	return 0;

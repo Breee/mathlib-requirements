@@ -13,7 +13,7 @@ int main() {
   float res = fabs_float(x);
 
   // x is -0, result shall be +0
-  if (!(res == -0.0f && __signbit_float(res) == 1)) {
+  if (!(res == 0.0f && __signbit_float(res) == 0)) {
     __VERIFIER_error();
     return 1;
   }

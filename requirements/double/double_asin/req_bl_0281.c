@@ -5,7 +5,7 @@
 int main() {
 
   /*
-   * REQ-BL-0270
+   * REQ-BL-0281
    * The asin and asinf procedures shall return NaN if the argument is not in the range [-1, 1].
    */
 

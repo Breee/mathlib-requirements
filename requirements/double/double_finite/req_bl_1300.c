@@ -13,7 +13,7 @@ int main()
   double x = __VERIFIER_nondet_double();
 
   // x is inf, or nan we don't want to continue
-  if (isfinite_double(x) && !isnan_double(x)) {
+  if (!isinf_double(x) && !isnan_double(x)) {
     __VERIFIER_precond_reach();
 
   	double res = isfinite_double(x);

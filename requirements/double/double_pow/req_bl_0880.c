@@ -20,7 +20,7 @@ int main() {
     double res = __ieee754_pow(x, y);
 
     // result shall be -inf
-    if(isinf_double(res)){
+    if(!isinf_double(res)){
       __VERIFIER_error();
       return 1;
     }
